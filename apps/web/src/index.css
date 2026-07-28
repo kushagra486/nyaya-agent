@@ -1,17 +1,24 @@
 :root {
-  /* --- Color tokens --- */
-  --ink: #0a0c10;              /* page background */
-  --ink-raised: #12151c;       /* panel base, used with alpha for glass */
-  --hairline: #262b35;         /* borders, dividers */
-  --paper: #edeae0;            /* primary text, aged paper */
-  --slate: #8890a1;            /* muted text */
-  --seal-gold: #b9932f;        /* in-force / current law accent */
-  --stamp-crimson: #8c3a3a;    /* repealed / disclaimer accent */
-  --seal-gold-glow: rgba(185, 147, 47, 0.35);
+  /* --- Color tokens (Nyaya-Agent design system) --- */
+  --ink: #10141d;              /* Background (Surface) - Deep Charcoal Blue */
+  --ink-raised: #1c212c;       /* Containers (Cards/Modals) - Slightly Lighter Navy Grey */
+  --hairline: #2a3040;         /* borders, dividers derived from container tone */
+  --paper: #ffffff;            /* Text (Primary) - Pure White */
+  --slate: #94a3b8;            /* Text (Secondary) - Slate Grey */
+  --mint: #4ade80;             /* Primary Accent - Analyzed/Verified/positive states */
+  --mint-glow: rgba(74, 222, 128, 0.28);
+  --amber: #fbbf24;            /* Secondary Accent - Draft/Pending, legal scale branding, statute citations */
+  --gold-cta: #eab308;         /* Button/Interactive Fill - primary CTAs */
+  --gold-cta-glow: rgba(234, 179, 8, 0.35);
+
+  /* Back-compat aliases used across components */
+  --seal-gold: var(--amber);
+  --seal-gold-glow: var(--gold-cta-glow);
+  --stamp-crimson: var(--slate);
 
   /* --- Type tokens --- */
-  --font-display: "Fraunces", "Iowan Old Style", serif;
-  --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: "Inter", "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: "Inter", "Roboto", -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 
   color-scheme: dark;
@@ -30,8 +37,8 @@ html, body {
 
 body {
   background-image:
-    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(185, 147, 47, 0.08), transparent 60%),
-    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(140, 58, 58, 0.06), transparent 55%);
+    radial-gradient(ellipse 900px 500px at 15% -10%, rgba(251, 191, 36, 0.06), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 20%, rgba(74, 222, 128, 0.05), transparent 55%);
   background-attachment: fixed;
 }
 
@@ -42,15 +49,28 @@ body {
 a { color: inherit; }
 
 ::selection {
-  background: var(--seal-gold-glow);
+  background: var(--gold-cta-glow);
   color: var(--paper);
 }
 
-/* Visible keyboard focus everywhere */
 :focus-visible {
-  outline: 2px solid var(--seal-gold);
+  outline: 2px solid var(--gold-cta);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+/* Screen Loading: fade-in-up when a section enters */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.5s ease both;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 @media (prefers-reduced-motion: reduce) {

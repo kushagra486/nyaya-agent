@@ -9,9 +9,9 @@ function App() {
       <DisclaimerBanner />
       <SiteHeader />
       <main>
-        <Correlator />
-        <CaseAnalysis />
-        <BrowseTable />
+        <div className="fade-in-up"><Correlator /></div>
+        <div className="fade-in-up"><CaseAnalysis /></div>
+        <div className="fade-in-up"><BrowseTable /></div>
       </main>
       <SiteFooter />
     </>

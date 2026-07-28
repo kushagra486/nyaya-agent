@@ -16,17 +16,16 @@
 
 .correlator-headline {
   font-family: var(--font-display);
-  font-weight: 500;
-  font-size: clamp(2rem, 5.5vw, 3.4rem);
-  line-height: 1.12;
+  font-weight: 700;
+  font-size: clamp(1.9rem, 5vw, 3rem);
+  line-height: 1.15;
   margin: 0 0 1rem;
   color: var(--paper);
 }
 
 .correlator-headline-em {
-  font-style: italic;
-  font-weight: 500;
-  color: var(--seal-gold);
+  font-weight: 700;
+  color: var(--amber);
 }
 
 .correlator-sub {
@@ -41,24 +40,23 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(18, 21, 28, 0.7);
+  background: var(--ink-raised);
   border: 1px solid var(--hairline);
   border-radius: 14px;
   padding: 0.4rem 0.4rem 0.4rem 1.1rem;
-  backdrop-filter: blur(14px);
   max-width: 480px;
   margin: 0 auto;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .correlator-input-row:focus-within {
-  border-color: var(--seal-gold);
-  box-shadow: 0 0 0 4px var(--seal-gold-glow);
+  border-color: var(--gold-cta);
+  box-shadow: 0 0 0 4px var(--gold-cta-glow);
 }
 
 .correlator-input-glyph {
   font-family: var(--font-mono);
-  color: var(--seal-gold);
+  color: var(--amber);
   font-size: 1.1rem;
 }
 
@@ -95,11 +93,16 @@
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
   gap: 1rem;
-  background: rgba(18, 21, 28, 0.55);
+  background: var(--ink-raised);
   border: 1px solid var(--hairline);
   border-radius: 18px;
   padding: 1.5rem 1.25rem 1.25rem;
   animation: correlator-reveal 0.35s ease;
+  transition: transform 0.12s ease;
+}
+
+.correlator-card:active {
+  transform: scale(0.98);
 }
 
 @keyframes correlator-reveal {
@@ -119,17 +122,24 @@
   height: 68px;
 }
 
-.correlator-side-old .correlator-side-act,
-.correlator-side-old .correlator-side-section {
-  color: var(--stamp-crimson);
-  text-decoration: line-through;
-  text-decoration-thickness: 1px;
-  opacity: 0.75;
+.correlator-side-old .correlator-side-act {
+  color: var(--slate);
+  opacity: 0.85;
 }
 
-.correlator-side-new .correlator-side-act,
+.correlator-side-old .correlator-side-section {
+  color: var(--slate);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  opacity: 0.85;
+}
+
+.correlator-side-new .correlator-side-act {
+  color: var(--mint);
+}
+
 .correlator-side-new .correlator-side-section {
-  color: var(--seal-gold);
+  color: var(--amber);
 }
 
 .correlator-side-act {
@@ -159,6 +169,7 @@
 
 .correlator-title {
   font-family: var(--font-display);
+  font-weight: 600;
   font-size: 1.05rem;
   margin: 0 0 0.3rem;
   color: var(--paper);

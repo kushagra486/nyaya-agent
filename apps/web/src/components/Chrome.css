@@ -1,7 +1,7 @@
 .disclaimer-banner {
-  background: rgba(140, 58, 58, 0.1);
-  border-bottom: 1px solid rgba(140, 58, 58, 0.3);
-  color: #d7b3b3;
+  background: rgba(148, 163, 184, 0.08);
+  border-bottom: 1px solid var(--hairline);
+  color: var(--slate);
   font-size: 0.82rem;
   text-align: center;
   padding: 0.65rem 1rem;
@@ -10,7 +10,7 @@
 
 .disclaimer-mark {
   font-family: var(--font-mono);
-  color: var(--stamp-crimson);
+  color: var(--amber);
   margin-right: 0.4rem;
 }
 
@@ -29,14 +29,14 @@
 
 .site-wordmark {
   font-family: var(--font-mono);
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 0.14em;
   font-size: 0.85rem;
   color: var(--paper);
 }
 
 .site-wordmark-dot {
-  color: var(--seal-gold);
+  color: var(--amber);
 }
 
 .site-github-link {
@@ -50,8 +50,8 @@
 }
 
 .site-github-link:hover {
-  border-color: var(--seal-gold);
-  color: var(--seal-gold);
+  border-color: var(--gold-cta);
+  color: var(--amber);
 }
 
 .site-footer {
@@ -65,7 +65,7 @@
 }
 
 .site-footer a {
-  color: var(--seal-gold);
+  color: var(--amber);
   text-decoration: underline;
 }
 

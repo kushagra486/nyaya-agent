@@ -20,7 +20,7 @@
 }
 
 .browse-tab {
-  background: rgba(18, 21, 28, 0.5);
+  background: var(--ink-raised);
   border: 1px solid var(--hairline);
   color: var(--slate);
   border-radius: 999px;
@@ -31,13 +31,13 @@
 }
 
 .browse-tab-active {
-  border-color: var(--seal-gold);
-  color: var(--seal-gold);
-  background: rgba(185, 147, 47, 0.08);
+  border-color: var(--gold-cta);
+  color: var(--amber);
+  background: rgba(234, 179, 8, 0.1);
 }
 
 .browse-filter {
-  background: rgba(18, 21, 28, 0.5);
+  background: var(--ink-raised);
   border: 1px solid var(--hairline);
   border-radius: 10px;
   padding: 0.55rem 0.9rem;
@@ -48,7 +48,7 @@
 
 .browse-filter:focus {
   outline: none;
-  border-color: var(--seal-gold);
+  border-color: var(--gold-cta);
 }
 
 .browse-table-wrap {
@@ -72,7 +72,7 @@
   color: var(--slate);
   padding: 0.9rem 1.1rem;
   border-bottom: 1px solid var(--hairline);
-  background: rgba(18, 21, 28, 0.6);
+  background: var(--ink-raised);
 }
 
 .browse-table tbody td {
@@ -86,7 +86,7 @@
 }
 
 .browse-table tbody tr:hover {
-  background: rgba(185, 147, 47, 0.04);
+  background: rgba(234, 179, 8, 0.05);
 }
 
 .browse-title {
@@ -106,8 +106,8 @@
   white-space: nowrap;
 }
 
-.browse-old { color: var(--stamp-crimson); }
-.browse-new { color: var(--seal-gold); }
+.browse-old { color: var(--slate); }
+.browse-new { color: var(--amber); }
 
 .browse-act {
   display: block;

@@ -50,13 +50,21 @@ export function CaseAnalysis() {
       />
 
       <button type="button" className="analyze-btn" onClick={handleAnalyze} disabled={loading}>
-        {loading ? "Analyzing…" : "Analyze"}
+        {loading ? (
+          <>
+            <span className="analyze-spinner" aria-hidden="true" />
+            Analyzing
+          </>
+        ) : (
+          "Analyze"
+        )}
       </button>
 
       {error && <p className="case-error">{error}</p>}
 
       {result && (
-        <div className="case-result">
+        <div className="case-result fade-in-up">
+          <span className="case-result-badge">Analyzed</span>
           <pre className="case-result-text">{result}</pre>
         </div>
       )}

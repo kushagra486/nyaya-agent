@@ -6,7 +6,7 @@ export function RepealedStamp() {
         cy="60"
         r="52"
         fill="none"
-        stroke="var(--stamp-crimson)"
+        stroke="var(--slate)"
         strokeWidth="3"
         strokeDasharray="6 4"
       />
@@ -17,7 +17,7 @@ export function RepealedStamp() {
         fontFamily="var(--font-mono)"
         fontSize="12"
         letterSpacing="2"
-        fill="var(--stamp-crimson)"
+        fill="var(--slate)"
       >
         REPEALED
       </text>
@@ -28,7 +28,7 @@ export function RepealedStamp() {
         fontFamily="var(--font-mono)"
         fontSize="9"
         letterSpacing="3"
-        fill="var(--stamp-crimson)"
+        fill="var(--slate)"
       >
         1 JUL 2024
       </text>
@@ -39,8 +39,8 @@ export function RepealedStamp() {
 export function InForceSeal() {
   return (
     <svg viewBox="0 0 120 120" className="seal-svg" aria-hidden="true">
-      <circle cx="60" cy="60" r="54" fill="none" stroke="var(--seal-gold)" strokeWidth="1.5" />
-      <circle cx="60" cy="60" r="46" fill="none" stroke="var(--seal-gold)" strokeWidth="2.5" />
+      <circle cx="60" cy="60" r="54" fill="none" stroke="var(--mint)" strokeWidth="1.5" />
+      <circle cx="60" cy="60" r="46" fill="none" stroke="var(--mint)" strokeWidth="2.5" />
       <text
         x="60"
         y="56"
@@ -48,9 +48,9 @@ export function InForceSeal() {
         fontFamily="var(--font-mono)"
         fontSize="11"
         letterSpacing="2"
-        fill="var(--seal-gold)"
+        fill="var(--mint)"
       >
-        IN FORCE
+        VERIFIED
       </text>
       <text
         x="60"
@@ -59,7 +59,7 @@ export function InForceSeal() {
         fontFamily="var(--font-mono)"
         fontSize="9"
         letterSpacing="3"
-        fill="var(--seal-gold)"
+        fill="var(--mint)"
       >
         CURRENT LAW
       </text>
