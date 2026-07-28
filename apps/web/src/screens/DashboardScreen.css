@@ -1,0 +1,223 @@
+.dashboard-screen {
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.dashboard-wordmark {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  font-size: 0.85rem;
+  color: var(--paper);
+}
+
+.dashboard-signout {
+  background: none;
+  border: 1px solid var(--hairline);
+  color: var(--slate);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.dashboard-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.dashboard-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--paper);
+  margin: 0.5rem 0 1.25rem;
+}
+
+.dashboard-quick-access {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.quick-chip {
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  color: var(--amber);
+  border-radius: 999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.dashboard-empty {
+  color: var(--slate);
+  font-size: 0.9rem;
+  padding: 1rem 0;
+}
+
+.dashboard-error {
+  color: #f87171;
+  font-size: 0.85rem;
+  margin: 1rem 0 0;
+}
+
+.case-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.case-card {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  text-align: left;
+  transition: transform 0.12s ease;
+  width: 100%;
+}
+
+.case-card:active {
+  transform: scale(0.98);
+}
+
+.case-status-bar {
+  width: 4px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: var(--slate);
+}
+
+.case-status-draft { background: var(--amber); }
+.case-status-analyzed { background: var(--mint); }
+.case-status-lawyer_assigned { background: var(--mint); }
+.case-status-closed { background: var(--slate); }
+
+.case-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.case-card-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--paper);
+}
+
+.case-card-status {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.case-card-status-draft { color: var(--amber); }
+.case-card-status-analyzed { color: var(--mint); }
+
+.case-card-chevron {
+  color: var(--slate);
+  font-size: 1.3rem;
+}
+
+.new-case-btn {
+  width: 100%;
+  background: var(--gold-cta);
+  color: var(--ink);
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.intake-panel {
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.intake-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0;
+}
+
+.intake-input,
+.intake-textarea {
+  background: var(--ink);
+  border: 1px solid var(--hairline);
+  border-radius: 10px;
+  padding: 0.7rem 0.85rem;
+  color: var(--paper);
+  font-size: 0.92rem;
+  font-family: var(--font-body);
+}
+
+.intake-textarea {
+  resize: vertical;
+}
+
+.intake-input:focus,
+.intake-textarea:focus {
+  outline: none;
+  border-color: var(--gold-cta);
+  box-shadow: 0 0 0 4px var(--gold-cta-glow);
+}
+
+.intake-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.intake-cancel {
+  background: none;
+  border: 1px solid var(--hairline);
+  color: var(--slate);
+  border-radius: 10px;
+  padding: 0.6rem 1.1rem;
+  cursor: pointer;
+}
+
+.intake-submit {
+  background: var(--gold-cta);
+  color: var(--ink);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 110px;
+}
+
+.intake-submit:disabled {
+  opacity: 0.7;
+  cursor: wait;
+}

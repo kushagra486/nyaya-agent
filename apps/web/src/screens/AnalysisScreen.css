@@ -1,0 +1,131 @@
+.analysis-screen {
+  min-height: 100vh;
+  position: relative;
+}
+
+.analysis-loading {
+  color: var(--slate);
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.analysis-header {
+  display: flex;
+  align-items: center;
+  gap: 0.9rem;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.analysis-back {
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  color: var(--paper);
+  border-radius: 999px;
+  width: 36px;
+  height: 36px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.analysis-header-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.analysis-case-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--paper);
+}
+
+.analysis-status-badge {
+  display: inline-block;
+  width: fit-content;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+  padding: 0.15rem 0.6rem;
+}
+
+.analysis-status-draft {
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.1);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.analysis-status-analyzed {
+  color: var(--mint);
+  background: rgba(74, 222, 128, 0.1);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.analysis-body {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 1.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.analysis-card {
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 1.25rem;
+}
+
+.analysis-card-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--slate);
+  margin: 0 0 0.6rem;
+}
+
+.analysis-card-text {
+  color: var(--paper);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.analysis-card-result {
+  border-left: 3px solid var(--mint);
+  border-radius: 4px 16px 16px 4px;
+}
+
+.analysis-result-text {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--paper);
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+.analysis-error {
+  color: #f87171;
+  font-size: 0.85rem;
+}
+
+.chat-fab {
+  position: fixed;
+  bottom: 1.75rem;
+  right: 1.75rem;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gold-cta);
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+  box-shadow: 0 8px 24px var(--gold-cta-glow);
+}

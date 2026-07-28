@@ -10,20 +10,25 @@ export function DisclaimerBanner() {
   );
 }
 
-export function SiteHeader() {
+export function SiteHeader({ onSignIn }: { onSignIn: () => void }) {
   return (
     <header className="site-header">
       <span className="site-wordmark">
         NYAYA<span className="site-wordmark-dot">·</span>AGENT
       </span>
-      <a
-        className="site-github-link"
-        href="https://github.com/kushagra486/nyaya-agent"
-        target="_blank"
-        rel="noreferrer"
-      >
-        View on GitHub
-      </a>
+      <div className="site-header-actions">
+        <button type="button" className="site-signin-link" onClick={onSignIn}>
+          Sign in
+        </button>
+        <a
+          className="site-github-link"
+          href="https://github.com/kushagra486/nyaya-agent"
+          target="_blank"
+          rel="noreferrer"
+        >
+          View on GitHub
+        </a>
+      </div>
     </header>
   );
 }
