@@ -116,6 +116,98 @@
   font-size: 0.85rem;
 }
 
+.analysis-facts-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--paper);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.statute-citations {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.statute-citation {
+  border-left: 2px solid var(--amber);
+  padding-left: 0.9rem;
+}
+
+.statute-citation-top {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.statute-citation-code {
+  font-family: var(--font-mono);
+  color: var(--amber);
+  font-weight: 600;
+  font-size: 0.92rem;
+}
+
+.statute-citation-old {
+  font-family: var(--font-mono);
+  color: var(--slate);
+  font-size: 0.8rem;
+}
+
+.statute-confidence {
+  margin-left: auto;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: 999px;
+  padding: 0.1rem 0.5rem;
+}
+
+.statute-confidence-high {
+  color: var(--mint);
+  background: rgba(74, 222, 128, 0.12);
+}
+
+.statute-confidence-medium {
+  color: var(--amber);
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.statute-confidence-low {
+  color: var(--slate);
+  background: rgba(148, 163, 184, 0.1);
+}
+
+.statute-citation-title {
+  font-weight: 600;
+  color: var(--paper);
+  margin: 0.3rem 0 0.15rem;
+  font-size: 0.92rem;
+}
+
+.statute-citation-explanation {
+  color: var(--slate);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.analysis-steps-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--paper);
+  font-size: 0.95rem;
+  line-height: 1.8;
+}
+
+.analysis-disclaimer {
+  font-size: 0.78rem;
+  color: var(--slate);
+  text-align: center;
+  padding: 0 1rem;
+}
+
 .chat-fab {
   position: fixed;
   bottom: 1.75rem;

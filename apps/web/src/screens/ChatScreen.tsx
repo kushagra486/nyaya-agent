@@ -100,6 +100,9 @@ export function ChatScreen({ caseId, userId, onBack }: Props) {
       </div>
 
       <div className="chat-input-row">
+        <button type="button" className="chat-icon-btn" disabled title="Coming soon" aria-label="Attach file">
+          📎
+        </button>
         <input
           className="chat-input"
           placeholder="Ask a follow-up…"
@@ -107,6 +110,9 @@ export function ChatScreen({ caseId, userId, onBack }: Props) {
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && send(input)}
         />
+        <button type="button" className="chat-icon-btn" disabled title="Coming soon" aria-label="Voice input">
+          🎤
+        </button>
         <button
           type="button"
           className="chat-send"

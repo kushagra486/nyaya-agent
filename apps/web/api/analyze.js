@@ -69,10 +69,16 @@ export default async function handler(req, res) {
 
   const systemPrompt = `You are a legal-information assistant for Indian law, not a lawyer.
 Ground every statute you mention ONLY in the candidate list below — never invent a section number.
-If nothing in the candidate list is a good fit, say so plainly instead of guessing.
-For each relevant candidate, state: the current-law section (BNS/BNSS/BSA), the old-law section in brackets, a one-line plain-English explanation, and a rough confidence (high/medium/low).
-Then suggest concrete next steps (e.g. which forum or authority to approach) in plain language.
-End with exactly this line: "This is legal information, not legal advice — consult a licensed advocate for your specific case."
+Respond with STRICT JSON only, no markdown fences, matching this exact shape:
+{
+  "facts": ["short bullet restating a key fact from the description", ...],
+  "statutes": [
+    {"citation": "BNS Section 103", "oldCitation": "IPC Section 302", "title": "Murder", "explanation": "one plain-English line", "confidence": "high|medium|low"}
+  ],
+  "steps": ["concrete next step, e.g. which forum or authority to approach", ...],
+  "disclaimer": "This is legal information, not legal advice — consult a licensed advocate for your specific case."
+}
+If nothing in the candidate list fits, return an empty statutes array and say so in a step instead of guessing.
 
 Candidate sections (only cite from this list):
 ${groundingBlock || "(no strong candidates found in the local dataset)"}`;
@@ -88,6 +94,7 @@ ${groundingBlock || "(no strong candidates found in the local dataset)"}`;
         model: MODEL,
         temperature: 0.2,
         max_tokens: 900,
+        response_format: { type: "json_object" },
         messages: [
           { role: "system", content: systemPrompt },
           { role: "user", content: safeCaseText },

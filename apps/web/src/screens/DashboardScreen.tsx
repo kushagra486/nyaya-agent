@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { listCases, createCase } from "../lib/db";
-import { signOut } from "../lib/auth";
 import type { CaseRecord } from "../lib/dbTypes";
 import "./DashboardScreen.css";
 
@@ -60,11 +59,10 @@ export function DashboardScreen({ userId, onOpenCase, onOpenLawyers }: Props) {
     <div className="dashboard-screen">
       <header className="dashboard-header">
         <span className="dashboard-wordmark">
-          NYAYA<span className="site-wordmark-dot">·</span>AGENT
+          <span className="dashboard-scale-icon" aria-hidden="true">⚖️</span> NYAYA
+          <span className="site-wordmark-dot">·</span>AGENT
         </span>
-        <button type="button" className="dashboard-signout" onClick={() => signOut()}>
-          Sign out
-        </button>
+        <span className="dashboard-bell" aria-label="Notifications" role="img">🔔</span>
       </header>
 
       <div className="dashboard-body fade-in-up">
@@ -107,9 +105,21 @@ export function DashboardScreen({ userId, onOpenCase, onOpenLawyers }: Props) {
         {error && <p className="dashboard-error">{error}</p>}
 
         {!showIntake ? (
-          <button type="button" className="new-case-btn" onClick={() => setShowIntake(true)}>
-            + New Case
-          </button>
+          <>
+            <div className="intake-options-row">
+              <button type="button" className="intake-option intake-option-disabled" disabled title="Coming soon">
+                <span className="intake-option-icon" aria-hidden="true">📄</span>
+                Upload Document
+              </button>
+              <button type="button" className="intake-option" onClick={() => setShowIntake(true)}>
+                <span className="intake-option-icon" aria-hidden="true">📝</span>
+                Describe Case
+              </button>
+            </div>
+            <button type="button" className="new-case-btn" onClick={() => setShowIntake(true)}>
+              + New Case
+            </button>
+          </>
         ) : (
           <div className="intake-panel fade-in-up">
             <p className="intake-label">Describe Case</p>

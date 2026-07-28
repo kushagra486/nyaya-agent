@@ -11,10 +11,17 @@ interface Props {
 
 const SPECIALIZATIONS = ["Civil", "Criminal", "Family", "Cyber", "Corporate"];
 
+function initials(name: string): string {
+  const parts = name.replace(/^Adv\.\s*/i, "").split(" ").filter(Boolean);
+  return parts.slice(0, 2).map((p) => p[0]).join("").toUpperCase();
+}
+
 export function LawyersScreen({ userId, activeCaseId, onBack }: Props) {
   const [lawyers, setLawyers] = useState<LawyerRecord[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<string | null>(null);
+  const [courtFilter, setCourtFilter] = useState("");
+  const [minExperience, setMinExperience] = useState(0);
   const [requestedId, setRequestedId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -25,10 +32,20 @@ export function LawyersScreen({ userId, activeCaseId, onBack }: Props) {
       .finally(() => setLoading(false));
   }, []);
 
+  const courts = useMemo(() => {
+    const set = new Set<string>();
+    lawyers.forEach((l) => l.court_practices?.forEach((c) => set.add(c)));
+    return Array.from(set).sort();
+  }, [lawyers]);
+
   const filtered = useMemo(() => {
-    if (!filter) return lawyers;
-    return lawyers.filter((l) => l.specializations?.includes(filter));
-  }, [lawyers, filter]);
+    return lawyers.filter((l) => {
+      if (filter && !l.specializations?.includes(filter)) return false;
+      if (courtFilter && !l.court_practices?.includes(courtFilter)) return false;
+      if (l.experience_years < minExperience) return false;
+      return true;
+    });
+  }, [lawyers, filter, courtFilter, minExperience]);
 
   async function handleRequest(lawyerId: string) {
     if (!activeCaseId) {
@@ -74,6 +91,29 @@ export function LawyersScreen({ userId, activeCaseId, onBack }: Props) {
           ))}
         </div>
 
+        <div className="lawyers-dropdowns">
+          <select
+            className="lawyer-dropdown"
+            value={courtFilter}
+            onChange={(e) => setCourtFilter(e.target.value)}
+          >
+            <option value="">All courts</option>
+            {courts.map((c) => (
+              <option key={c} value={c}>{c}</option>
+            ))}
+          </select>
+          <select
+            className="lawyer-dropdown"
+            value={minExperience}
+            onChange={(e) => setMinExperience(Number(e.target.value))}
+          >
+            <option value={0}>Any experience</option>
+            <option value={5}>5+ years</option>
+            <option value={10}>10+ years</option>
+            <option value={15}>15+ years</option>
+          </select>
+        </div>
+
         {loading && <p className="dashboard-empty">Loading lawyers…</p>}
         {error && <p className="dashboard-error">{error}</p>}
 
@@ -81,7 +121,10 @@ export function LawyersScreen({ userId, activeCaseId, onBack }: Props) {
           {filtered.map((l) => (
             <div className="lawyer-card" key={l.id}>
               <div className="lawyer-card-top">
-                <span className="lawyer-name">{l.name}</span>
+                <div className="lawyer-identity">
+                  <span className="lawyer-avatar" aria-hidden="true">{initials(l.name)}</span>
+                  <span className="lawyer-name">{l.name}</span>
+                </div>
                 {l.is_verified && <span className="verified-badge">✓ Verified</span>}
               </div>
               <p className="lawyer-meta">

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "./lib/auth";
 import { DisclaimerBanner, SiteHeader, SiteFooter } from "./components/Chrome";
+import { BottomNav, type NavTab } from "./components/BottomNav";
 import { Correlator } from "./components/Correlator";
 import { CaseAnalysis } from "./components/CaseAnalysis";
 import { BrowseTable } from "./components/BrowseTable";
@@ -9,8 +10,12 @@ import { DashboardScreen } from "./screens/DashboardScreen";
 import { AnalysisScreen } from "./screens/AnalysisScreen";
 import { ChatScreen } from "./screens/ChatScreen";
 import { LawyersScreen } from "./screens/LawyersScreen";
+import { HistoryScreen } from "./screens/HistoryScreen";
+import { ProfileScreen } from "./screens/ProfileScreen";
 
-type AppView = "dashboard" | "analysis" | "chat" | "lawyers";
+type AppView = "dashboard" | "analysis" | "chat" | "lawyers" | "history" | "profile";
+
+const TAB_VIEWS: NavTab[] = ["dashboard", "lawyers", "history", "profile"];
 
 function App() {
   const { session, loading, user } = useAuth();
@@ -22,8 +27,9 @@ function App() {
     return <div style={{ minHeight: "100vh" }} />;
   }
 
-  // Signed-in experience: the full product (Dashboard / Analysis / Chat / Lawyers)
+  // Signed-in experience: the full product (Dashboard / Analysis / Chat / Lawyers / History / Profile)
   if (session && user) {
+    // Drill-in screens: no bottom nav, back-arrow navigation instead
     if (view === "analysis" && activeCaseId) {
       return (
         <AnalysisScreen
@@ -42,24 +48,49 @@ function App() {
         />
       );
     }
+
+    // Top-level tab screens: persistent bottom nav
+    const activeTab: NavTab = TAB_VIEWS.includes(view as NavTab) ? (view as NavTab) : "dashboard";
+
+    let screen;
     if (view === "lawyers") {
-      return (
+      screen = (
         <LawyersScreen
           userId={user.id}
           activeCaseId={activeCaseId}
           onBack={() => setView("dashboard")}
         />
       );
+    } else if (view === "history") {
+      screen = (
+        <HistoryScreen
+          userId={user.id}
+          onOpenCase={(id) => {
+            setActiveCaseId(id);
+            setView("analysis");
+          }}
+        />
+      );
+    } else if (view === "profile") {
+      screen = <ProfileScreen email={user.email ?? null} />;
+    } else {
+      screen = (
+        <DashboardScreen
+          userId={user.id}
+          onOpenCase={(id) => {
+            setActiveCaseId(id);
+            setView("analysis");
+          }}
+          onOpenLawyers={() => setView("lawyers")}
+        />
+      );
     }
+
     return (
-      <DashboardScreen
-        userId={user.id}
-        onOpenCase={(id) => {
-          setActiveCaseId(id);
-          setView("analysis");
-        }}
-        onOpenLawyers={() => setView("lawyers")}
-      />
+      <>
+        {screen}
+        <BottomNav active={activeTab} onNavigate={(tab) => setView(tab)} />
+      </>
     );
   }
 

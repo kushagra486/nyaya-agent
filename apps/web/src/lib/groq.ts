@@ -4,6 +4,37 @@ export interface AnalysisResult {
   raw: string;
 }
 
+export interface StructuredAnalysis {
+  facts: string[];
+  statutes: Array<{
+    citation: string;
+    oldCitation?: string;
+    title?: string;
+    explanation: string;
+    confidence?: "high" | "medium" | "low";
+  }>;
+  steps: string[];
+  disclaimer?: string;
+}
+
+/**
+ * The analyze endpoint returns JSON (facts/statutes/steps). Older saved
+ * cases may have plain text from before this format existed, so this
+ * returns null rather than throwing when the content isn't parseable —
+ * callers fall back to rendering the raw text in that case.
+ */
+export function parseStructuredAnalysis(raw: string): StructuredAnalysis | null {
+  try {
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed.facts) && Array.isArray(parsed.statutes) && Array.isArray(parsed.steps)) {
+      return parsed as StructuredAnalysis;
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
 /**
  * Calls our own /api/analyze serverless function, which holds the Groq key
  * server-side (Vercel encrypted env var). The browser never sees the key —

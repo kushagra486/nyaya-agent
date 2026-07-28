@@ -5,7 +5,7 @@
 .lawyers-body {
   max-width: 720px;
   margin: 0 auto;
-  padding: 0 1.5rem 4rem;
+  padding: 0 1.5rem 6rem;
 }
 
 .lawyers-filters {
@@ -45,11 +45,47 @@
   padding: 1.25rem;
 }
 
+.lawyers-dropdowns {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.lawyer-dropdown {
+  flex: 1;
+  background: var(--ink-raised);
+  border: 1px solid var(--hairline);
+  color: var(--paper);
+  border-radius: 10px;
+  padding: 0.55rem 0.7rem;
+  font-size: 0.82rem;
+}
+
+.lawyer-identity {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.lawyer-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold-cta);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
 .lawyer-card-top {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.6rem;
 }
 
 .lawyer-name {
