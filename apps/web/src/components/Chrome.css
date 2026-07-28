@@ -1,0 +1,76 @@
+.disclaimer-banner {
+  background: rgba(140, 58, 58, 0.1);
+  border-bottom: 1px solid rgba(140, 58, 58, 0.3);
+  color: #d7b3b3;
+  font-size: 0.82rem;
+  text-align: center;
+  padding: 0.65rem 1rem;
+  line-height: 1.5;
+}
+
+.disclaimer-mark {
+  font-family: var(--font-mono);
+  color: var(--stamp-crimson);
+  margin-right: 0.4rem;
+}
+
+.disclaimer-banner strong {
+  color: #fff;
+}
+
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.site-wordmark {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  font-size: 0.85rem;
+  color: var(--paper);
+}
+
+.site-wordmark-dot {
+  color: var(--seal-gold);
+}
+
+.site-github-link {
+  font-size: 0.82rem;
+  color: var(--slate);
+  border: 1px solid var(--hairline);
+  border-radius: 999px;
+  padding: 0.4rem 0.9rem;
+  text-decoration: none;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+
+.site-github-link:hover {
+  border-color: var(--seal-gold);
+  color: var(--seal-gold);
+}
+
+.site-footer {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 4rem;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--slate);
+}
+
+.site-footer a {
+  color: var(--seal-gold);
+  text-decoration: underline;
+}
+
+.site-footer-muted {
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+  opacity: 0.75;
+}
