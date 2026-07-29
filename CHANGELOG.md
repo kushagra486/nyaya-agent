@@ -9,6 +9,16 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
+## v0.6.2 — Hero header collapses on scroll
+**Frontend:** `apps/web/versions/v0.6.2-nayay-bharat-v4.html` (= live `apps/web/index.html`)
+
+- The hero masthead now collapses (height, padding, and border animate away
+  — not just a floating slide-over) when scrolling down inside a view,
+  reusing the same auto-hide logic already driving the per-view topbar.
+  Reclaims real vertical space on short mobile viewports instead of a fixed
+  header permanently eating into the visible content area. Scrolls back
+  into view immediately when scrolling up.
+
 ## v0.6.1 — Scroll fix
 **Frontend:** `apps/web/versions/v0.6.1-nayay-bharat-v4.html` (= live `apps/web/index.html`)
 
