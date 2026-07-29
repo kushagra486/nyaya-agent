@@ -9,7 +9,19 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
-## v0.6.0 — "Nayay Bharat v4" (current)
+## v0.6.1 — Scroll fix
+**Frontend:** `apps/web/versions/v0.6.1-nayay-bharat-v4.html` (= live `apps/web/index.html`)
+
+- Fixed: page couldn't scroll at all on mobile. v0.6.0's layout change made
+  `body` a fixed-height `overflow:hidden` flex container so the sidebar and
+  main panel could scroll independently, but `.main` itself was never given
+  `overflow-y:auto` — so there was no scrollable container anywhere on
+  narrow viewports where content overflows immediately. Added
+  `overflow-y:auto; height:100%` (plus `-webkit-overflow-scrolling:touch`
+  for iOS momentum scrolling) to `.main`, matching the pattern already used
+  on `.sidebar`.
+
+## v0.6.0 — "Nayay Bharat v4"
 **Frontend:** `apps/web/versions/v0.6.0-nayay-bharat-v4.html` (= live `apps/web/index.html`)
 
 - New hero masthead header with animated gradient sweep and a cycling tagline
