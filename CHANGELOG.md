@@ -9,6 +9,18 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
+## v0.9.1 — Skip the login screen by default
+**Frontend:** `apps/web/versions/v0.9.1-nayay-bharat-light.html` (= live `apps/web/index.html`)
+
+- On initial load with no existing session, the app now signs in
+  anonymously automatically — no login screen to click through. Still a
+  real Supabase session (real `auth.uid()`), so RLS on cases/messages/
+  lawyers/consultations works exactly as normal; this isn't a fake bypass.
+  If the visitor explicitly signs out afterward, the auth screen shows
+  normally (their choice is respected, not immediately re-bypassed). Falls
+  back to the auth screen with a clear pointer to the required Supabase
+  toggle if Anonymous Sign-Ins isn't enabled on the project.
+
 ## v0.9.0 — "Nayay Bharat Light" — fresh design, full rewire
 **Frontend:** `apps/web/versions/v0.9.0-nayay-bharat-light.html` (= live `apps/web/index.html`)
 
