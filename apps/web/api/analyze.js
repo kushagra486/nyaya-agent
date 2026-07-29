@@ -72,12 +72,16 @@ Ground every statute you mention ONLY in the candidate list below — never inve
 Respond with STRICT JSON only, no markdown fences, matching this exact shape:
 {
   "facts": ["short bullet restating a key fact from the description", ...],
+  "timeline": [
+    {"event_date": "YYYY-MM-DD or null if no date is mentioned", "description": "what happened, in one line"}
+  ],
   "statutes": [
     {"citation": "BNS Section 103", "oldCitation": "IPC Section 302", "title": "Murder", "explanation": "one plain-English line", "confidence": "high|medium|low"}
   ],
   "steps": ["concrete next step, e.g. which forum or authority to approach", ...],
   "disclaimer": "This is legal information, not legal advice — consult a licensed advocate for your specific case."
 }
+For "timeline": extract every date-anchored event mentioned in the case description, in chronological order. If the description mentions an event but no explicit date, still include it with event_date null rather than guessing a date. If truly nothing date-like is mentioned, return an empty array.
 If nothing in the candidate list fits, return an empty statutes array and say so in a step instead of guessing.
 
 Candidate sections (only cite from this list):
@@ -93,7 +97,7 @@ ${groundingBlock || "(no strong candidates found in the local dataset)"}`;
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.2,
-        max_tokens: 900,
+        max_tokens: 1100,
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: systemPrompt },

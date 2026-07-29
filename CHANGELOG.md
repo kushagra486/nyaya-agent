@@ -9,6 +9,36 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
+## v0.8.0 — Case Timeline
+**Frontend:** `apps/web/versions/v0.8.0-nayay-bharat-v4.html` (= live `apps/web/index.html`)
+
+First increment from the backend implementation spec (step 1 of its
+suggested build order: "Cases + Timeline + Auth" — Cases/Auth already
+existed, this adds Timeline). Built on the existing Supabase + Vercel
+stack rather than standing up a separate Node/FastAPI + Redis service, per
+the spec's own suggested stack section adapted to what's already live:
+
+- New `timeline_events` table (`packages/database/migration_002_timeline.sql`)
+  with RLS matching the existing owner-only pattern
+- `/api/analyze` now extracts a chronological `timeline` array (date +
+  description) from the case description alongside facts/statutes/steps,
+  grounded in what's actually written — never invents dates
+- New **Case Timeline** card in the Analysis view: AI-extracted events
+  (gold dot) and user-added events (mint dot) rendered as a connected
+  chronological list, with an inline "+ Add Event" form for manual entries
+- Re-running analysis replaces prior AI-sourced timeline rows (avoids
+  duplicates) without touching anything the user added manually
+
+**Not yet built from the spec** (multi-agent chat split, Document Vault +
+clause review, Citation Generator, multilingual, hearing reminders, Legal
+Pulse ingestion) — these are substantial standalone efforts; several need
+external accounts (Twilio/SendGrid/FCM for reminders) or a separate Python
+runtime (OpenNyAI's actual NLP models can't run in Vercel's Node
+functions — would substitute equivalent LLM-prompted extraction instead).
+Next up per the spec's suggested order: single-agent chat is already live,
+so the natural next step is the multi-agent split (Research/Drafting/
+Compliance) on top of it.
+
 ## v0.7.0 — Scroll architecture rebuild
 **Frontend:** `apps/web/versions/v0.7.0-nayay-bharat-v4.html` (= live `apps/web/index.html`)
 
