@@ -12,7 +12,9 @@ transition — IPC → BNS, CrPC → BNSS, Indian Evidence Act → BSA.
 nyaya-agent/
 ├── apps/web/              # Vite + React + TypeScript web app
 │   └── api/analyze.js     # Vercel serverless function — holds the Groq key server-side
+├── apps/mobile/           # Flutter mobile app (Android/iOS) — same Supabase + same Vercel API
 ├── packages/legal-data/   # Ingestion pipeline: bare-act mapping CSVs → Supabase pgvector
+├── packages/database/     # schema.sql for the app backend (profiles/cases/messages/lawyers/consultations)
 └── .github/workflows/     # CI/CD — auto-deploys the static build to GitHub Pages
 ```
 
@@ -52,6 +54,16 @@ npm run dev
 The `/api/analyze` route needs `vercel dev` (not plain `vite dev`) to run
 locally with the serverless function, or use `vercel env pull` after linking
 the project.
+
+### apps/mobile — the Flutter mobile app
+
+Native Android/iOS implementation of the same product (Dashboard, AI Legal
+Analysis, Chat, Verify & Book Lawyer), sharing the exact same backend as the
+web app — same Supabase project/tables/RLS, same Vercel `/api/analyze` and
+`/api/chat` endpoints (so the Groq key story is identical: server-side only,
+never in the app bundle). See `apps/mobile/README.md` for the one-time
+`flutter create .` step needed to generate platform folders, since those
+aren't committed here.
 
 ### packages/legal-data — knowledge base ingestion
 

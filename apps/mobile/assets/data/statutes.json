@@ -1,0 +1,1072 @@
+[
+  {
+    "id": 1,
+    "group": "criminal",
+    "oldSection": "302",
+    "oldAct": "IPC 1860",
+    "newSection": "103",
+    "newAct": "BNS 2023",
+    "title": "Murder",
+    "notes": "Punishment for murder"
+  },
+  {
+    "id": 2,
+    "group": "criminal",
+    "oldSection": "307",
+    "oldAct": "IPC 1860",
+    "newSection": "109",
+    "newAct": "BNS 2023",
+    "title": "Attempt to murder",
+    "notes": ""
+  },
+  {
+    "id": 3,
+    "group": "criminal",
+    "oldSection": "304A",
+    "oldAct": "IPC 1860",
+    "newSection": "106",
+    "newAct": "BNS 2023",
+    "title": "Causing death by negligence",
+    "notes": "Includes hit-and-run enhanced clause"
+  },
+  {
+    "id": 4,
+    "group": "criminal",
+    "oldSection": "304B",
+    "oldAct": "IPC 1860",
+    "newSection": "80",
+    "newAct": "BNS 2023",
+    "title": "Dowry death",
+    "notes": ""
+  },
+  {
+    "id": 5,
+    "group": "criminal",
+    "oldSection": "306",
+    "oldAct": "IPC 1860",
+    "newSection": "108",
+    "newAct": "BNS 2023",
+    "title": "Abetment of suicide",
+    "notes": ""
+  },
+  {
+    "id": 6,
+    "group": "criminal",
+    "oldSection": "309",
+    "oldAct": "IPC 1860",
+    "newSection": "226",
+    "newAct": "BNS 2023",
+    "title": "Attempt to commit suicide",
+    "notes": ""
+  },
+  {
+    "id": 7,
+    "group": "criminal",
+    "oldSection": "376",
+    "oldAct": "IPC 1860",
+    "newSection": "64",
+    "newAct": "BNS 2023",
+    "title": "Rape",
+    "notes": ""
+  },
+  {
+    "id": 8,
+    "group": "criminal",
+    "oldSection": "354",
+    "oldAct": "IPC 1860",
+    "newSection": "74",
+    "newAct": "BNS 2023",
+    "title": "Assault on woman with intent to outrage modesty",
+    "notes": ""
+  },
+  {
+    "id": 9,
+    "group": "criminal",
+    "oldSection": "354A",
+    "oldAct": "IPC 1860",
+    "newSection": "75",
+    "newAct": "BNS 2023",
+    "title": "Sexual harassment",
+    "notes": ""
+  },
+  {
+    "id": 10,
+    "group": "criminal",
+    "oldSection": "354B",
+    "oldAct": "IPC 1860",
+    "newSection": "76",
+    "newAct": "BNS 2023",
+    "title": "Assault with intent to disrobe",
+    "notes": ""
+  },
+  {
+    "id": 11,
+    "group": "criminal",
+    "oldSection": "354C",
+    "oldAct": "IPC 1860",
+    "newSection": "77",
+    "newAct": "BNS 2023",
+    "title": "Voyeurism",
+    "notes": ""
+  },
+  {
+    "id": 12,
+    "group": "criminal",
+    "oldSection": "354D",
+    "oldAct": "IPC 1860",
+    "newSection": "78",
+    "newAct": "BNS 2023",
+    "title": "Stalking",
+    "notes": ""
+  },
+  {
+    "id": 13,
+    "group": "criminal",
+    "oldSection": "509",
+    "oldAct": "IPC 1860",
+    "newSection": "79",
+    "newAct": "BNS 2023",
+    "title": "Word/gesture/act insulting modesty of woman",
+    "notes": ""
+  },
+  {
+    "id": 14,
+    "group": "criminal",
+    "oldSection": "363",
+    "oldAct": "IPC 1860",
+    "newSection": "139",
+    "newAct": "BNS 2023",
+    "title": "Kidnapping",
+    "notes": ""
+  },
+  {
+    "id": 15,
+    "group": "criminal",
+    "oldSection": "366",
+    "oldAct": "IPC 1860",
+    "newSection": "141",
+    "newAct": "BNS 2023",
+    "title": "Kidnapping/abduction to compel marriage",
+    "notes": ""
+  },
+  {
+    "id": 16,
+    "group": "criminal",
+    "oldSection": "375",
+    "oldAct": "IPC 1860",
+    "newSection": "63",
+    "newAct": "BNS 2023",
+    "title": "Definition of rape",
+    "notes": ""
+  },
+  {
+    "id": 17,
+    "group": "criminal",
+    "oldSection": "498A",
+    "oldAct": "IPC 1860",
+    "newSection": "85",
+    "newAct": "BNS 2023",
+    "title": "Cruelty by husband or relatives",
+    "notes": ""
+  },
+  {
+    "id": 18,
+    "group": "criminal",
+    "oldSection": "494",
+    "oldAct": "IPC 1860",
+    "newSection": "82",
+    "newAct": "BNS 2023",
+    "title": "Bigamy - marrying again during lifetime of spouse",
+    "notes": ""
+  },
+  {
+    "id": 19,
+    "group": "criminal",
+    "oldSection": "323",
+    "oldAct": "IPC 1860",
+    "newSection": "115",
+    "newAct": "BNS 2023",
+    "title": "Voluntarily causing hurt",
+    "notes": ""
+  },
+  {
+    "id": 20,
+    "group": "criminal",
+    "oldSection": "324",
+    "oldAct": "IPC 1860",
+    "newSection": "118(1)",
+    "newAct": "BNS 2023",
+    "title": "Voluntarily causing hurt by dangerous weapons",
+    "notes": ""
+  },
+  {
+    "id": 21,
+    "group": "criminal",
+    "oldSection": "325",
+    "oldAct": "IPC 1860",
+    "newSection": "118(2)",
+    "newAct": "BNS 2023",
+    "title": "Voluntarily causing grievous hurt",
+    "notes": ""
+  },
+  {
+    "id": 22,
+    "group": "criminal",
+    "oldSection": "326",
+    "oldAct": "IPC 1860",
+    "newSection": "118(3)",
+    "newAct": "BNS 2023",
+    "title": "Grievous hurt by dangerous weapons/means",
+    "notes": ""
+  },
+  {
+    "id": 23,
+    "group": "criminal",
+    "oldSection": "336",
+    "oldAct": "IPC 1860",
+    "newSection": "125",
+    "newAct": "BNS 2023",
+    "title": "Act endangering life or personal safety of others",
+    "notes": ""
+  },
+  {
+    "id": 24,
+    "group": "criminal",
+    "oldSection": "337",
+    "oldAct": "IPC 1860",
+    "newSection": "125(A)",
+    "newAct": "BNS 2023",
+    "title": "Causing hurt by act endangering life/safety",
+    "notes": ""
+  },
+  {
+    "id": 25,
+    "group": "criminal",
+    "oldSection": "338",
+    "oldAct": "IPC 1860",
+    "newSection": "125(B)",
+    "newAct": "BNS 2023",
+    "title": "Causing grievous hurt by act endangering life/safety",
+    "notes": ""
+  },
+  {
+    "id": 26,
+    "group": "criminal",
+    "oldSection": "341",
+    "oldAct": "IPC 1860",
+    "newSection": "126",
+    "newAct": "BNS 2023",
+    "title": "Wrongful restraint",
+    "notes": ""
+  },
+  {
+    "id": 27,
+    "group": "criminal",
+    "oldSection": "342",
+    "oldAct": "IPC 1860",
+    "newSection": "127",
+    "newAct": "BNS 2023",
+    "title": "Wrongful confinement",
+    "notes": ""
+  },
+  {
+    "id": 28,
+    "group": "criminal",
+    "oldSection": "351",
+    "oldAct": "IPC 1860",
+    "newSection": "130",
+    "newAct": "BNS 2023",
+    "title": "Assault",
+    "notes": ""
+  },
+  {
+    "id": 29,
+    "group": "criminal",
+    "oldSection": "353",
+    "oldAct": "IPC 1860",
+    "newSection": "121",
+    "newAct": "BNS 2023",
+    "title": "Assault/criminal force to deter public servant",
+    "notes": ""
+  },
+  {
+    "id": 30,
+    "group": "criminal",
+    "oldSection": "379",
+    "oldAct": "IPC 1860",
+    "newSection": "303",
+    "newAct": "BNS 2023",
+    "title": "Theft",
+    "notes": ""
+  },
+  {
+    "id": 31,
+    "group": "criminal",
+    "oldSection": "380",
+    "oldAct": "IPC 1860",
+    "newSection": "305",
+    "newAct": "BNS 2023",
+    "title": "Theft in dwelling house",
+    "notes": ""
+  },
+  {
+    "id": 32,
+    "group": "criminal",
+    "oldSection": "382",
+    "oldAct": "IPC 1860",
+    "newSection": "304",
+    "newAct": "BNS 2023",
+    "title": "Theft after preparation for causing death/hurt/restraint",
+    "notes": ""
+  },
+  {
+    "id": 33,
+    "group": "criminal",
+    "oldSection": "392",
+    "oldAct": "IPC 1860",
+    "newSection": "309",
+    "newAct": "BNS 2023",
+    "title": "Robbery",
+    "notes": ""
+  },
+  {
+    "id": 34,
+    "group": "criminal",
+    "oldSection": "395",
+    "oldAct": "IPC 1860",
+    "newSection": "310(2)",
+    "newAct": "BNS 2023",
+    "title": "Dacoity",
+    "notes": ""
+  },
+  {
+    "id": 35,
+    "group": "criminal",
+    "oldSection": "403",
+    "oldAct": "IPC 1860",
+    "newSection": "314",
+    "newAct": "BNS 2023",
+    "title": "Dishonest misappropriation of property",
+    "notes": ""
+  },
+  {
+    "id": 36,
+    "group": "criminal",
+    "oldSection": "406",
+    "oldAct": "IPC 1860",
+    "newSection": "316(2)",
+    "newAct": "BNS 2023",
+    "title": "Criminal breach of trust",
+    "notes": ""
+  },
+  {
+    "id": 37,
+    "group": "criminal",
+    "oldSection": "411",
+    "oldAct": "IPC 1860",
+    "newSection": "317(2)",
+    "newAct": "BNS 2023",
+    "title": "Dishonestly receiving stolen property",
+    "notes": ""
+  },
+  {
+    "id": 38,
+    "group": "criminal",
+    "oldSection": "420",
+    "oldAct": "IPC 1860",
+    "newSection": "318(4)",
+    "newAct": "BNS 2023",
+    "title": "Cheating and dishonestly inducing delivery of property",
+    "notes": "Cultural term '420' does not apply legally post July 2024"
+  },
+  {
+    "id": 39,
+    "group": "criminal",
+    "oldSection": "441",
+    "oldAct": "IPC 1860",
+    "newSection": "329",
+    "newAct": "BNS 2023",
+    "title": "Criminal trespass",
+    "notes": ""
+  },
+  {
+    "id": 40,
+    "group": "criminal",
+    "oldSection": "447",
+    "oldAct": "IPC 1860",
+    "newSection": "329(3)",
+    "newAct": "BNS 2023",
+    "title": "Punishment for criminal trespass",
+    "notes": ""
+  },
+  {
+    "id": 41,
+    "group": "criminal",
+    "oldSection": "448",
+    "oldAct": "IPC 1860",
+    "newSection": "329(4)",
+    "newAct": "BNS 2023",
+    "title": "House-trespass",
+    "notes": ""
+  },
+  {
+    "id": 42,
+    "group": "criminal",
+    "oldSection": "442",
+    "oldAct": "IPC 1860",
+    "newSection": "330",
+    "newAct": "BNS 2023",
+    "title": "House-breaking",
+    "notes": ""
+  },
+  {
+    "id": 43,
+    "group": "criminal",
+    "oldSection": "445",
+    "oldAct": "IPC 1860",
+    "newSection": "330",
+    "newAct": "BNS 2023",
+    "title": "House-breaking by night",
+    "notes": ""
+  },
+  {
+    "id": 44,
+    "group": "criminal",
+    "oldSection": "120A",
+    "oldAct": "IPC 1860",
+    "newSection": "61(1)",
+    "newAct": "BNS 2023",
+    "title": "Criminal conspiracy - definition",
+    "notes": ""
+  },
+  {
+    "id": 45,
+    "group": "criminal",
+    "oldSection": "120B",
+    "oldAct": "IPC 1860",
+    "newSection": "61(2)",
+    "newAct": "BNS 2023",
+    "title": "Punishment for criminal conspiracy",
+    "notes": ""
+  },
+  {
+    "id": 46,
+    "group": "criminal",
+    "oldSection": "124A",
+    "oldAct": "IPC 1860",
+    "newSection": "152",
+    "newAct": "BNS 2023",
+    "title": "Sedition (repealed) - replaced by acts endangering sovereignty/unity/integrity",
+    "notes": "Sedition terminology removed"
+  },
+  {
+    "id": 47,
+    "group": "criminal",
+    "oldSection": "141",
+    "oldAct": "IPC 1860",
+    "newSection": "189",
+    "newAct": "BNS 2023",
+    "title": "Unlawful assembly",
+    "notes": ""
+  },
+  {
+    "id": 48,
+    "group": "criminal",
+    "oldSection": "143",
+    "oldAct": "IPC 1860",
+    "newSection": "189(3)",
+    "newAct": "BNS 2023",
+    "title": "Punishment for unlawful assembly",
+    "notes": ""
+  },
+  {
+    "id": 49,
+    "group": "criminal",
+    "oldSection": "146",
+    "oldAct": "IPC 1860",
+    "newSection": "191",
+    "newAct": "BNS 2023",
+    "title": "Rioting",
+    "notes": ""
+  },
+  {
+    "id": 50,
+    "group": "criminal",
+    "oldSection": "147",
+    "oldAct": "IPC 1860",
+    "newSection": "191(2)",
+    "newAct": "BNS 2023",
+    "title": "Punishment for rioting",
+    "notes": ""
+  },
+  {
+    "id": 51,
+    "group": "criminal",
+    "oldSection": "148",
+    "oldAct": "IPC 1860",
+    "newSection": "191(3)",
+    "newAct": "BNS 2023",
+    "title": "Rioting armed with deadly weapon",
+    "notes": ""
+  },
+  {
+    "id": 52,
+    "group": "criminal",
+    "oldSection": "149",
+    "oldAct": "IPC 1860",
+    "newSection": "190",
+    "newAct": "BNS 2023",
+    "title": "Common object of unlawful assembly",
+    "notes": ""
+  },
+  {
+    "id": 53,
+    "group": "criminal",
+    "oldSection": "34",
+    "oldAct": "IPC 1860",
+    "newSection": "3(5)",
+    "newAct": "BNS 2023",
+    "title": "Acts done by several persons in furtherance of common intention",
+    "notes": ""
+  },
+  {
+    "id": 54,
+    "group": "criminal",
+    "oldSection": "149_RW",
+    "oldAct": "IPC 1860",
+    "newSection": "190_RW",
+    "newAct": "BNS 2023",
+    "title": "Every member of unlawful assembly guilty of common object offence",
+    "notes": ""
+  },
+  {
+    "id": 55,
+    "group": "criminal",
+    "oldSection": "286",
+    "oldAct": "IPC 1860",
+    "newSection": "287",
+    "newAct": "BNS 2023",
+    "title": "Negligent conduct with respect to explosive substance",
+    "notes": ""
+  },
+  {
+    "id": 56,
+    "group": "criminal",
+    "oldSection": "294",
+    "oldAct": "IPC 1860",
+    "newSection": "296",
+    "newAct": "BNS 2023",
+    "title": "Obscene acts and songs",
+    "notes": ""
+  },
+  {
+    "id": 57,
+    "group": "criminal",
+    "oldSection": "506",
+    "oldAct": "IPC 1860",
+    "newSection": "351",
+    "newAct": "BNS 2023",
+    "title": "Criminal intimidation - punishment",
+    "notes": ""
+  },
+  {
+    "id": 58,
+    "group": "criminal",
+    "oldSection": "499",
+    "oldAct": "IPC 1860",
+    "newSection": "356",
+    "newAct": "BNS 2023",
+    "title": "Defamation - definition",
+    "notes": ""
+  },
+  {
+    "id": 59,
+    "group": "criminal",
+    "oldSection": "500",
+    "oldAct": "IPC 1860",
+    "newSection": "356(2)",
+    "newAct": "BNS 2023",
+    "title": "Punishment for defamation",
+    "notes": ""
+  },
+  {
+    "id": 60,
+    "group": "criminal",
+    "oldSection": "415",
+    "oldAct": "IPC 1860",
+    "newSection": "318(1)",
+    "newAct": "BNS 2023",
+    "title": "Cheating - definition",
+    "notes": ""
+  },
+  {
+    "id": 61,
+    "group": "criminal",
+    "oldSection": "390",
+    "oldAct": "IPC 1860",
+    "newSection": "308",
+    "newAct": "BNS 2023",
+    "title": "Robbery - definition",
+    "notes": ""
+  },
+  {
+    "id": 62,
+    "group": "criminal",
+    "oldSection": "465",
+    "oldAct": "IPC 1860",
+    "newSection": "336",
+    "newAct": "BNS 2023",
+    "title": "Forgery",
+    "notes": ""
+  },
+  {
+    "id": 63,
+    "group": "criminal",
+    "oldSection": "468",
+    "oldAct": "IPC 1860",
+    "newSection": "338",
+    "newAct": "BNS 2023",
+    "title": "Forgery for purpose of cheating",
+    "notes": ""
+  },
+  {
+    "id": 64,
+    "group": "criminal",
+    "oldSection": "471",
+    "oldAct": "IPC 1860",
+    "newSection": "340",
+    "newAct": "BNS 2023",
+    "title": "Using forged document as genuine",
+    "notes": ""
+  },
+  {
+    "id": 65,
+    "group": "procedure",
+    "oldSection": "154",
+    "oldAct": "CrPC 1973",
+    "newSection": "173",
+    "newAct": "BNSS 2023",
+    "title": "FIR registration for cognisable offence",
+    "notes": "Zero FIR now statutory under 173(1) proviso; e-FIR allowed"
+  },
+  {
+    "id": 66,
+    "group": "procedure",
+    "oldSection": "155",
+    "oldAct": "CrPC 1973",
+    "newSection": "174",
+    "newAct": "BNSS 2023",
+    "title": "Information in non-cognisable cases",
+    "notes": ""
+  },
+  {
+    "id": 67,
+    "group": "procedure",
+    "oldSection": "156",
+    "oldAct": "CrPC 1973",
+    "newSection": "175",
+    "newAct": "BNSS 2023",
+    "title": "Police power to investigate cognisable case",
+    "notes": ""
+  },
+  {
+    "id": 68,
+    "group": "procedure",
+    "oldSection": "156(3)",
+    "oldAct": "CrPC 1973",
+    "newSection": "175(3)",
+    "newAct": "BNSS 2023",
+    "title": "Magistrate order for investigation",
+    "notes": ""
+  },
+  {
+    "id": 69,
+    "group": "procedure",
+    "oldSection": "157",
+    "oldAct": "CrPC 1973",
+    "newSection": "176",
+    "newAct": "BNSS 2023",
+    "title": "Procedure for investigation",
+    "notes": "Mandatory forensic investigation for offences with 7+ years punishment"
+  },
+  {
+    "id": 70,
+    "group": "procedure",
+    "oldSection": "158",
+    "oldAct": "CrPC 1973",
+    "newSection": "177",
+    "newAct": "BNSS 2023",
+    "title": "Report of investigation to Magistrate",
+    "notes": ""
+  },
+  {
+    "id": 71,
+    "group": "procedure",
+    "oldSection": "41",
+    "oldAct": "CrPC 1973",
+    "newSection": "35",
+    "newAct": "BNSS 2023",
+    "title": "When police may arrest without warrant",
+    "notes": ""
+  },
+  {
+    "id": 72,
+    "group": "procedure",
+    "oldSection": "41A",
+    "oldAct": "CrPC 1973",
+    "newSection": "35(3)",
+    "newAct": "BNSS 2023",
+    "title": "Notice of appearance before arrest",
+    "notes": ""
+  },
+  {
+    "id": 73,
+    "group": "procedure",
+    "oldSection": "50",
+    "oldAct": "CrPC 1973",
+    "newSection": "47",
+    "newAct": "BNSS 2023",
+    "title": "Person arrested to be informed of grounds",
+    "notes": ""
+  },
+  {
+    "id": 74,
+    "group": "procedure",
+    "oldSection": "57",
+    "oldAct": "CrPC 1973",
+    "newSection": "58",
+    "newAct": "BNSS 2023",
+    "title": "Person arrested not to be detained beyond 24 hours",
+    "notes": ""
+  },
+  {
+    "id": 75,
+    "group": "procedure",
+    "oldSection": "125",
+    "oldAct": "CrPC 1973",
+    "newSection": "144",
+    "newAct": "BNSS 2023",
+    "title": "Order for maintenance of wives/children/parents",
+    "notes": ""
+  },
+  {
+    "id": 76,
+    "group": "procedure",
+    "oldSection": "144",
+    "oldAct": "CrPC 1973",
+    "newSection": "163",
+    "newAct": "BNSS 2023",
+    "title": "Power to issue order in urgent cases of nuisance/apprehended danger",
+    "notes": ""
+  },
+  {
+    "id": 77,
+    "group": "procedure",
+    "oldSection": "164",
+    "oldAct": "CrPC 1973",
+    "newSection": "183",
+    "newAct": "BNSS 2023",
+    "title": "Recording of confessions and statements",
+    "notes": ""
+  },
+  {
+    "id": 78,
+    "group": "procedure",
+    "oldSection": "161",
+    "oldAct": "CrPC 1973",
+    "newSection": "180",
+    "newAct": "BNSS 2023",
+    "title": "Examination of witnesses by police",
+    "notes": ""
+  },
+  {
+    "id": 79,
+    "group": "procedure",
+    "oldSection": "164A",
+    "oldAct": "CrPC 1973",
+    "newSection": "184",
+    "newAct": "BNSS 2023",
+    "title": "Medical examination of victim in rape cases",
+    "notes": ""
+  },
+  {
+    "id": 80,
+    "group": "procedure",
+    "oldSection": "167",
+    "oldAct": "CrPC 1973",
+    "newSection": "187",
+    "newAct": "BNSS 2023",
+    "title": "Procedure when investigation cannot be completed in 24 hours - remand",
+    "notes": "Staggered police custody up to 60/90 days introduced"
+  },
+  {
+    "id": 81,
+    "group": "procedure",
+    "oldSection": "173",
+    "oldAct": "CrPC 1973",
+    "newSection": "193",
+    "newAct": "BNSS 2023",
+    "title": "Report of police officer on completion of investigation - chargesheet",
+    "notes": "90-day time limit for filing chargesheet"
+  },
+  {
+    "id": 82,
+    "group": "procedure",
+    "oldSection": "190",
+    "oldAct": "CrPC 1973",
+    "newSection": "210",
+    "newAct": "BNSS 2023",
+    "title": "Cognisance of offences by Magistrate",
+    "notes": ""
+  },
+  {
+    "id": 83,
+    "group": "procedure",
+    "oldSection": "200",
+    "oldAct": "CrPC 1973",
+    "newSection": "223",
+    "newAct": "BNSS 2023",
+    "title": "Examination of complainant",
+    "notes": ""
+  },
+  {
+    "id": 84,
+    "group": "procedure",
+    "oldSection": "207",
+    "oldAct": "CrPC 1973",
+    "newSection": "230",
+    "newAct": "BNSS 2023",
+    "title": "Supply of copies of police report/documents to accused",
+    "notes": ""
+  },
+  {
+    "id": 85,
+    "group": "procedure",
+    "oldSection": "227",
+    "oldAct": "CrPC 1973",
+    "newSection": "250",
+    "newAct": "BNSS 2023",
+    "title": "Discharge",
+    "notes": ""
+  },
+  {
+    "id": 86,
+    "group": "procedure",
+    "oldSection": "228",
+    "oldAct": "CrPC 1973",
+    "newSection": "251",
+    "newAct": "BNSS 2023",
+    "title": "Framing of charge",
+    "notes": ""
+  },
+  {
+    "id": 87,
+    "group": "procedure",
+    "oldSection": "309",
+    "oldAct": "CrPC 1973",
+    "newSection": "346",
+    "newAct": "BNSS 2023",
+    "title": "Power to postpone or adjourn proceedings",
+    "notes": "Maximum 2 adjournments per party"
+  },
+  {
+    "id": 88,
+    "group": "procedure",
+    "oldSection": "311",
+    "oldAct": "CrPC 1973",
+    "newSection": "348",
+    "newAct": "BNSS 2023",
+    "title": "Power to summon material witness or examine person present",
+    "notes": ""
+  },
+  {
+    "id": 89,
+    "group": "procedure",
+    "oldSection": "313",
+    "oldAct": "CrPC 1973",
+    "newSection": "351",
+    "newAct": "BNSS 2023",
+    "title": "Power to examine the accused",
+    "notes": ""
+  },
+  {
+    "id": 90,
+    "group": "procedure",
+    "oldSection": "436A",
+    "oldAct": "CrPC 1973",
+    "newSection": "479",
+    "newAct": "BNSS 2023",
+    "title": "Maximum period for undertrial detention - bail entitlement",
+    "notes": "First-time offenders eligible after 1/3rd max sentence served"
+  },
+  {
+    "id": 91,
+    "group": "procedure",
+    "oldSection": "438",
+    "oldAct": "CrPC 1973",
+    "newSection": "482",
+    "newAct": "BNSS 2023",
+    "title": "Anticipatory bail",
+    "notes": ""
+  },
+  {
+    "id": 92,
+    "group": "procedure",
+    "oldSection": "482",
+    "oldAct": "CrPC 1973",
+    "newSection": "528",
+    "newAct": "BNSS 2023",
+    "title": "Inherent powers of High Court",
+    "notes": ""
+  },
+  {
+    "id": 93,
+    "group": "procedure",
+    "oldSection": "Schedule_I",
+    "oldAct": "CrPC 1973",
+    "newSection": "Schedule_I",
+    "newAct": "BNSS 2023",
+    "title": "Classification of offences",
+    "notes": ""
+  },
+  {
+    "id": 94,
+    "group": "evidence",
+    "oldSection": "3",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "2",
+    "newAct": "BSA 2023",
+    "title": "Interpretation clause / definitions",
+    "notes": ""
+  },
+  {
+    "id": 95,
+    "group": "evidence",
+    "oldSection": "5",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "3",
+    "newAct": "BSA 2023",
+    "title": "Evidence may be given of facts in issue and relevant facts",
+    "notes": ""
+  },
+  {
+    "id": 96,
+    "group": "evidence",
+    "oldSection": "6",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "4",
+    "newAct": "BSA 2023",
+    "title": "Relevancy of facts forming part of same transaction",
+    "notes": ""
+  },
+  {
+    "id": 97,
+    "group": "evidence",
+    "oldSection": "27",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "23",
+    "newAct": "BSA 2023",
+    "title": "Discovery of fact from information received in police custody",
+    "notes": "Only discovery-leading portion of confession provable"
+  },
+  {
+    "id": 98,
+    "group": "evidence",
+    "oldSection": "24",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "22",
+    "newAct": "BSA 2023",
+    "title": "Confession caused by inducement/threat/promise irrelevant",
+    "notes": ""
+  },
+  {
+    "id": 99,
+    "group": "evidence",
+    "oldSection": "25",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "22(2)",
+    "newAct": "BSA 2023",
+    "title": "Confession to police officer not provable",
+    "notes": ""
+  },
+  {
+    "id": 100,
+    "group": "evidence",
+    "oldSection": "26",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "22(3)",
+    "newAct": "BSA 2023",
+    "title": "Confession by accused in police custody",
+    "notes": ""
+  },
+  {
+    "id": 101,
+    "group": "evidence",
+    "oldSection": "32",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "26",
+    "newAct": "BSA 2023",
+    "title": "Statements/dying declaration by person who cannot be called as witness",
+    "notes": ""
+  },
+  {
+    "id": 102,
+    "group": "evidence",
+    "oldSection": "65",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "58",
+    "newAct": "BSA 2023",
+    "title": "Proof of contents of documents",
+    "notes": ""
+  },
+  {
+    "id": 103,
+    "group": "evidence",
+    "oldSection": "65A",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "61",
+    "newAct": "BSA 2023",
+    "title": "Special provisions for electronic evidence",
+    "notes": ""
+  },
+  {
+    "id": 104,
+    "group": "evidence",
+    "oldSection": "65B",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "63",
+    "newAct": "BSA 2023",
+    "title": "Admissibility of electronic records",
+    "notes": "Certificate now requires two signatures - device custodian + expert"
+  },
+  {
+    "id": 105,
+    "group": "evidence",
+    "oldSection": "101",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "104",
+    "newAct": "BSA 2023",
+    "title": "Burden of proof",
+    "notes": ""
+  },
+  {
+    "id": 106,
+    "group": "evidence",
+    "oldSection": "114",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "119",
+    "newAct": "BSA 2023",
+    "title": "Court may presume existence of certain facts",
+    "notes": ""
+  },
+  {
+    "id": 107,
+    "group": "evidence",
+    "oldSection": "145",
+    "oldAct": "Indian Evidence Act 1872",
+    "newSection": "148",
+    "newAct": "BSA 2023",
+    "title": "Cross-examination as to previous statements in writing",
+    "notes": ""
+  }
+]

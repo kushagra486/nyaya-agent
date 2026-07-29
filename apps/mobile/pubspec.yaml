@@ -1,0 +1,45 @@
+name: nyaya_agent
+description: Nyaya-Agent — AI-assisted legal information app for Indian law (BNS/BNSS/BSA).
+publish_to: "none"
+version: 0.1.0
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # State management
+  provider: ^6.1.2
+
+  # Navigation
+  go_router: ^14.2.0
+
+  # Backend
+  supabase_flutter: ^2.5.6
+  http: ^1.2.2
+
+  # Design
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+  flutter_svg: ^2.0.10+1
+
+  # Icons
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+  # Add font files under assets/fonts and register here if bundling
+  # Inter/SF Pro are pulled at runtime via google_fonts instead, so no
+  # asset registration is required for typography.
+  assets:
+    - assets/data/statutes.json
+    # Add assets/images/ and assets/icons/ back here once you've dropped
+    # real files in them — Flutter can complain about listed folders with
+    # nothing in them.
