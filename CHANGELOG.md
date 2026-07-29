@@ -9,6 +9,31 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
+## v0.7.0 — Scroll architecture rebuild
+**Frontend:** `apps/web/versions/v0.7.0-nayay-bharat-v4.html` (= live `apps/web/index.html`)
+
+v0.6.0's fixed-height `overflow:hidden` body + internal scroll container +
+JS-driven hide-on-scroll header turned out fragile — it took two follow-up
+patches (v0.6.1, v0.6.2) and was still confusing to actually use. Rebuilt
+the whole scroll/layout model from scratch using plain, standard CSS
+instead of JS scroll-listener tricks:
+
+- **Body scrolls normally again** (removed `height:100vh; overflow:hidden`)
+  — the page behaves like an ordinary website, no nested scroll containers
+- **Sidebar is now `position:sticky`** with `max-height:100vh; overflow-y:auto`
+  — the standard, battle-tested pattern for a persistent side nav; stays in
+  view without any JS at all
+- **Topbar stays `position:sticky`** (kept from before) but the fragile
+  `hide-nav` JS class-toggling on scroll is gone entirely
+- **Hero header now just scrolls away** with the page like a normal top
+  banner, instead of trying to animate its own height/padding away — far
+  more predictable
+- **Fixed a real, separate bug found in the process:** on mobile
+  (≤980px) the sidebar was `position:fixed` off-screen with **no way to
+  open it** — there was no hamburger button wired up at all, so navigation
+  was completely inaccessible on phones. Added a working menu button in
+  the hero, a tap-to-close backdrop, and auto-close on any nav selection.
+
 ## v0.6.2 — Hero header collapses on scroll
 **Frontend:** `apps/web/versions/v0.6.2-nayay-bharat-v4.html` (= live `apps/web/index.html`)
 
