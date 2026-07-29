@@ -313,6 +313,7 @@
       <a id="authToSignup">Create an account</a>
       <a id="authToSignin" style="display:none;">Sign in with password</a>
       <a id="authToMagic">Use a magic link instead</a>
+      <a id="authBypassLink" style="color:var(--text-lo); font-size:11.5px;">Continue without an account (dev/testing)</a>
     </div>
   </div>
 </div>
@@ -615,6 +616,21 @@ function setAuthMode(mode){
 document.getElementById("authToSignup").addEventListener("click", ()=>setAuthMode("signup"));
 document.getElementById("authToSignin").addEventListener("click", ()=>setAuthMode("signin"));
 document.getElementById("authToMagic").addEventListener("click", ()=>setAuthMode("magic"));
+document.getElementById("authBypassLink").addEventListener("click", async ()=>{
+  authError.style.display = "none";
+  const link = document.getElementById("authBypassLink");
+  const original = link.textContent;
+  link.textContent = "Signing you in…";
+  try{
+    const { error } = await supa.auth.signInAnonymously();
+    if(error) throw error;
+    // onAuthStateChange -> onSignedIn() handles the rest
+  } catch(e){
+    authError.textContent = "Anonymous sign-in isn't enabled on this Supabase project yet — go to Authentication → Sign In / Providers → enable \"Anonymous Sign-Ins\", then try again. (" + (e.message || "") + ")";
+    authError.style.display = "block";
+    link.textContent = original;
+  }
+});
 setAuthMode("signin");
 
 authSubmitBtn.addEventListener("click", async ()=>{
