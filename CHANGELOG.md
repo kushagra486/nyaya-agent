@@ -1,0 +1,71 @@
+# Changelog
+
+All notable changes to Nyaya-Agent are documented here. Versions follow
+[Semantic Versioning](https://semver.org/) in spirit (this is a pre-1.0
+project, so minor bumps can include breaking changes).
+
+The live site always reflects the latest version below. Older frontend
+snapshots are archived and browsable at `apps/web/versions/`.
+
+---
+
+## v0.6.0 — "Nayay Bharat v4" (current)
+**Frontend:** `apps/web/versions/v0.6.0-nayay-bharat-v4.html` (= live `apps/web/index.html`)
+
+- New hero masthead header with animated gradient sweep and a cycling tagline
+  (Research / Draft / Explain / Analyze / Verify)
+- Command palette (**Ctrl/Cmd+K**) — search and jump to any view, start a new
+  case, or continue a chat, all wired to real navigation
+- Chat now shows a real "AI thinking" sequence (searching context → reading
+  laws → finding precedents → answer ready) that holds until the actual
+  `/api/chat` response arrives, rather than a fixed fake delay
+- Message action toolbar on chat replies: copy (real clipboard copy),
+  regenerate (re-sends the real prior message), like/dislike, share
+- Sidebar restructured: New Chat button, "AI Tools" section (Draft Petition
+  and Legal Notice Generator marked coming-soon via toast; Acts & Statutes
+  wired to the real statute Library), expanded Records (Documents/Settings
+  coming-soon; Case History and Profile fully real), and a live "Recent"
+  list showing your 2 most recent cases
+- Toast notification system for coming-soon actions
+
+## v0.5.0 — "Nayay Bharat v3" wired
+**Frontend:** `apps/web/versions/v0.5.0-nayay-bharat-v3.html`
+
+- Uploaded static design fully wired to the real backend: Supabase
+  auth/cases/messages/lawyers/consultations, existing Vercel `/api/analyze`
+  and `/api/chat` proxies
+- Added the three views that were dead nav links in the original mockup:
+  Case History, Legal Library (searchable table of all 107 statute
+  mappings, embedded inline), Profile (email + sign out)
+- Replaced the React SPA (`apps/web/src/*`) as the deployed frontend — Vite
+  now passes this single static `index.html` through unchanged
+- Added anonymous sign-in as a dev/testing bypass (still a real, RLS-safe
+  Supabase session, not a fake UI skip)
+
+## v0.4.0 — Design system alignment
+- Restyled the case-dashboard React app to the Stitch mockup's dark
+  charcoal / mint / amber palette, Inter typography, bottom nav
+  (Dashboard/Lawyers/History/Profile), structured Facts/Statutes/Steps
+  analysis cards, lawyer avatar-initials + court/experience filters
+
+## v0.3.0 — Dashboard + Supabase backend
+- Full Supabase schema (`packages/database/schema.sql`): profiles, cases,
+  messages, lawyers, consultations, with row-level security throughout
+- React screens: Auth (password + magic link), Dashboard, AI Analysis, Chat,
+  Lawyer Booking, all backed by real data
+- `apps/mobile`: Flutter app implementing the same product, sharing the
+  same Supabase project and the same Vercel API routes
+
+## v0.2.0 — Server-side Groq proxy
+- Moved Groq calls from client-side (BYOK) to `apps/web/api/analyze.js` and
+  `api/chat.js` — Vercel serverless functions holding `GROQ_API_KEY` as a
+  server-only environment variable, with per-IP rate limiting
+- Deployed to Vercel (git-linked, auto-deploy on push) alongside the
+  existing GitHub Pages static mirror
+
+## v0.1.0 — Initial release
+- `packages/legal-data`: ingestion pipeline converting IPC/CrPC/Evidence Act
+  ↔ BNS/BNSS/BSA bare-act CSVs into Supabase pgvector embeddings
+- First web app: Section Correlator, AI-assisted Statute Matching, Full
+  Register browse table
+- GitHub repo + GitHub Actions → GitHub Pages deploy workflow established

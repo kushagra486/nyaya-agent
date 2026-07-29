@@ -36,49 +36,10 @@
       radial-gradient(55% 45% at 85% 6%, rgba(234,179,8,0.14), transparent 60%),
       radial-gradient(50% 40% at 8% 14%, rgba(74,222,128,0.07), transparent 60%),
       var(--bg);
-    height:100vh;
-    overflow:hidden;
-    display:flex; flex-direction:column;
+    background-attachment:fixed;
+    min-height:100vh;
+    overflow-x:hidden;
   }
-
-  /* ---------- Hero masthead ---------- */
-  .hero{
-    position:relative; z-index:6; flex-shrink:0;
-    display:flex; align-items:center; justify-content:space-between; gap:20px;
-    padding:16px 34px; border-bottom:1px solid var(--hair);
-    background:rgba(16,20,29,0.5);
-    backdrop-filter:blur(22px) saturate(160%); -webkit-backdrop-filter:blur(22px) saturate(160%);
-    overflow:hidden;
-  }
-  .hero::after{
-    content:''; position:absolute; top:0; left:-40%; width:40%; height:100%;
-    background:linear-gradient(100deg, transparent, rgba(234,179,8,0.16), transparent);
-    animation:sweep 6s ease-in-out infinite;
-  }
-  @keyframes sweep{0%{left:-40%;}55%{left:120%;}100%{left:120%;}}
-  .hero-inner{display:flex; align-items:center; gap:16px; position:relative; z-index:1;}
-  .hero-mark{
-    width:46px;height:46px; flex-shrink:0; display:flex; align-items:center; justify-content:center;
-    background:linear-gradient(145deg, rgba(234,179,8,0.28), rgba(234,179,8,0.06));
-    border:1px solid rgba(234,179,8,0.4); border-radius:14px; color:var(--gold); font-size:19px;
-    animation:tilt 5s ease-in-out infinite;
-  }
-  .hero-text h1{margin:0; font-family:'Playfair Display',serif; font-weight:800; font-size:23px; letter-spacing:.2px;
-    background:linear-gradient(100deg,#ffffff 30%, var(--gold-soft) 65%, var(--gold) 100%);
-    -webkit-background-clip:text; background-clip:text; -webkit-text-fill-color:transparent;}
-  .hero-text h1 em{font-style:normal;}
-  .hero-sub{margin:2px 0 4px; font-size:12.5px; color:var(--text-lo); font-weight:500; letter-spacing:.2px;}
-  .hero-tagline{margin:0; display:flex; align-items:center; gap:8px; font-size:11px; letter-spacing:1.4px; text-transform:uppercase; color:var(--gold-soft); font-weight:600;}
-  .hero-tagline i{color:rgba(234,179,8,0.5); font-style:normal; font-size:8px; animation:pulseDot 2.4s ease-in-out infinite;}
-  @keyframes pulseDot{0%,100%{opacity:.55;} 50%{opacity:1;}}
-  .cmdk-btn{
-    position:relative; z-index:1; display:flex; align-items:center; gap:10px; padding:10px 16px;
-    background:rgba(255,255,255,0.05); border:1px solid var(--hair); border-radius:var(--radius-pill);
-    color:var(--text-lo); font-size:12.5px; cursor:pointer; transition:border-color .15s var(--ease), background .15s var(--ease);
-    white-space:nowrap;
-  }
-  .cmdk-btn:hover{border-color:rgba(234,179,8,0.4); background:rgba(234,179,8,0.06); color:var(--text-hi);}
-  .cmdk-btn kbd{background:rgba(255,255,255,0.08); border:1px solid var(--hair); border-radius:5px; padding:2px 6px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-hi);}
 
   .blob{position:fixed; border-radius:50%; filter:blur(100px); z-index:0; pointer-events:none;}
   .blob1{width:560px;height:560px; background:radial-gradient(circle,var(--gold),transparent 70%); opacity:0.35; top:-180px; right:-120px; animation:drift1 24s ease-in-out infinite;}
@@ -87,7 +48,7 @@
   @keyframes drift1{0%,100%{transform:translate(0,0)}50%{transform:translate(-34px,32px)}}
   @keyframes drift2{0%,100%{transform:translate(0,0)}50%{transform:translate(32px,-24px)}}
 
-  .app{position:relative; z-index:1; display:grid; grid-template-columns:264px 1fr; flex:1; min-height:0;}
+  .app{position:relative; z-index:1; display:grid; grid-template-columns:264px 1fr; min-height:100vh;}
 
   /* ---------- Sidebar ---------- */
   .sidebar{
@@ -95,9 +56,8 @@
     backdrop-filter:blur(26px) saturate(160%); -webkit-backdrop-filter:blur(26px) saturate(160%);
     border-right:1px solid var(--hair);
     padding:28px 20px;
-    display:flex; flex-direction:column; gap:26px;
+    display:flex; flex-direction:column; gap:34px;
     transition:transform .3s var(--ease);
-    overflow-y:auto; height:100%;
   }
   .brand{display:flex; align-items:center; gap:12px; padding:0 4px;}
   .scales{width:40px;height:40px; display:flex; align-items:center; justify-content:center;
@@ -125,10 +85,6 @@
     border-color:rgba(234,179,8,0.35); color:var(--text-hi);
   }
   .nav a.active i{color:var(--gold);}
-  .nav a.nav-soon{opacity:0.45; cursor:not-allowed;}
-  .nav a.nav-soon:hover{transform:none; background:transparent; color:var(--text-lo);}
-  .toast{position:fixed; bottom:28px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--surface); border:1px solid var(--hair); color:var(--text-hi); padding:12px 20px; border-radius:var(--radius-pill); font-size:13px; z-index:40; opacity:0; pointer-events:none; transition:all .25s var(--ease); box-shadow:0 12px 30px rgba(0,0,0,0.4);}
-  .toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
 
   .sidebar-foot{margin-top:auto; display:flex; align-items:center; gap:10px; padding:12px; border-radius:14px; background:rgba(255,255,255,0.04); border:1px solid var(--hair);}
   .avatar-sm{width:34px;height:34px;border-radius:50%; background:linear-gradient(145deg,#3a4560,#1c212c); display:flex; align-items:center; justify-content:center; font-size:13px; font-weight:600;}
@@ -252,24 +208,6 @@
   .composer input::placeholder{color:var(--text-lo);}
   .send-btn{width:40px;height:40px;border-radius:50%; background:linear-gradient(135deg,var(--gold-soft),var(--gold)); border:none; color:#231400; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:transform .15s var(--ease);}
   .send-btn:active{transform:scale(0.9);}
-  .msg-actions{display:flex; gap:6px; margin-top:10px; opacity:0.55; transition:opacity .15s var(--ease);}
-  .msg.agent:hover .msg-actions{opacity:1;}
-  .msg-act{width:26px;height:26px; border-radius:8px; display:flex; align-items:center; justify-content:center; background:rgba(255,255,255,0.05); border:1px solid var(--hair); color:var(--text-lo); font-size:11px; cursor:pointer; transition:all .15s var(--ease);}
-  .msg-act:hover{color:var(--text-hi); border-color:rgba(234,179,8,0.4);}
-  .msg-act.liked{color:var(--mint); border-color:rgba(74,222,128,0.4);}
-  .msg-act.disliked{color:#f08787; border-color:rgba(240,135,135,0.4);}
-  .msg-act.copied{color:var(--gold-soft); border-color:rgba(234,179,8,0.5);}
-
-  .thinking{align-self:flex-start; display:flex; flex-direction:column; gap:8px; padding:14px 16px; border-radius:16px; background:var(--surface-3); border:1px solid var(--hair); border-bottom-left-radius:4px; font-size:12.5px; color:var(--text-lo); max-width:76%;}
-  .think-step{display:flex; align-items:center; gap:9px; opacity:0.35; transition:opacity .25s var(--ease);}
-  .think-step.active{opacity:1; color:var(--text-hi);}
-  .think-step.done{opacity:0.7; color:var(--mint);}
-  .think-step i{width:14px; text-align:center;}
-  .think-dots{display:inline-flex; gap:3px;}
-  .think-dots span{width:4px;height:4px;border-radius:50%; background:var(--gold-soft); animation:dotPulse 1.2s ease-in-out infinite;}
-  .think-dots span:nth-child(2){animation-delay:.2s;}
-  .think-dots span:nth-child(3){animation-delay:.4s;}
-  @keyframes dotPulse{0%,60%,100%{opacity:.25; transform:scale(0.8);} 30%{opacity:1; transform:scale(1);}}
   .side-info{padding:20px; display:flex; flex-direction:column; gap:16px; height:fit-content;}
   .side-info h4{font-size:12px; text-transform:uppercase; letter-spacing:1.2px; color:var(--text-lo); margin:0;}
   .side-info .row{display:flex; justify-content:space-between; font-size:13px; color:var(--text-lo);}
@@ -344,30 +282,7 @@
     .sidebar.open{transform:translateX(0);}
     .main{padding:20px;}
     .grid-cards, .lawyer-grid, .chat-wrap, .quick-row{grid-template-columns:1fr;}
-    .cmdk-btn span{display:none;}
-    .hero-sub, .hero-tagline{display:none;}
   }
-
-  /* ===== Command Palette ===== */
-  .cmdk-overlay{position:fixed; inset:0; background:rgba(6,8,13,0.55); backdrop-filter:blur(6px); z-index:30; opacity:0; pointer-events:none; transition:opacity .2s var(--ease); display:flex; align-items:flex-start; justify-content:center; padding-top:12vh;}
-  .cmdk-overlay.open{opacity:1; pointer-events:auto;}
-  .cmdk-modal{
-    width:min(560px,90vw); background:rgba(28,33,44,0.72); backdrop-filter:blur(26px) saturate(160%); -webkit-backdrop-filter:blur(26px) saturate(160%);
-    border:1px solid var(--hair); border-radius:16px; overflow:hidden; transform:translateY(-14px); opacity:0;
-    transition:transform .22s var(--ease), opacity .22s var(--ease); box-shadow:0 30px 70px rgba(0,0,0,0.55);
-  }
-  .cmdk-overlay.open .cmdk-modal{transform:translateY(0); opacity:1;}
-  .cmdk-input-row{display:flex; align-items:center; gap:12px; padding:16px 18px; border-bottom:1px solid var(--hair);}
-  .cmdk-input-row i{color:var(--text-lo);}
-  .cmdk-input-row input{flex:1; background:none; border:none; outline:none; color:var(--text-hi); font-size:15px;}
-  .cmdk-input-row input::placeholder{color:var(--text-lo);}
-  .cmdk-list{max-height:320px; overflow-y:auto; padding:8px;}
-  .cmdk-group-label{font-size:10.5px; text-transform:uppercase; letter-spacing:1.4px; color:var(--text-lo); padding:10px 12px 4px;}
-  .cmdk-item{display:flex; align-items:center; gap:12px; padding:11px 12px; border-radius:10px; cursor:pointer; font-size:13.5px; color:var(--text-lo);}
-  .cmdk-item i{width:16px; text-align:center; color:var(--text-lo);}
-  .cmdk-item.sel, .cmdk-item:hover{background:rgba(234,179,8,0.12); color:var(--text-hi);}
-  .cmdk-item.sel i, .cmdk-item:hover i{color:var(--gold);}
-  .cmdk-item .hint{margin-left:auto; font-size:10.5px; color:var(--text-lo);}
 </style>
 </head>
 <body>
@@ -403,22 +318,6 @@
   </div>
 </div>
 
-<!-- ================= HERO MASTHEAD ================= -->
-<header class="hero" id="appHero" style="display:none;">
-  <div class="hero-inner">
-    <div class="hero-mark"><i class="fa-solid fa-scale-balanced"></i></div>
-    <div class="hero-text">
-      <h1>Nayay <em>Bharat</em></h1>
-      <div class="hero-sub">India's AI Legal Intelligence Platform</div>
-      <div class="hero-tagline"><i>●</i><span id="tagCycle">Research</span></div>
-    </div>
-  </div>
-  <div style="display:flex; align-items:center; gap:10px; position:relative; z-index:1;">
-    <button class="cmdk-btn" id="cmdkOpen"><i class="fa-solid fa-magnifying-glass"></i><span>Search cases, statutes, lawyers…</span><kbd>Ctrl K</kbd></button>
-    <div class="icon-btn" id="themeBtn"><i class="fa-solid fa-moon"></i></div>
-  </div>
-</header>
-
 <div class="app" id="appRoot">
   <!-- ================= SIDEBAR ================= -->
   <aside class="sidebar" id="sidebar">
@@ -431,30 +330,17 @@
     </div>
 
     <nav class="nav">
-      <button class="cta-gold" id="newChatBtn" style="width:100%; display:flex; align-items:center; justify-content:center; gap:8px; margin-bottom:6px;"><i class="fa-solid fa-plus"></i>New Chat</button>
-
       <div class="nav-label">Workspace</div>
       <a class="nav-item active" data-view="dashboard"><i class="fa-solid fa-house"></i>Dashboard</a>
       <a class="nav-item" data-view="analysis"><i class="fa-solid fa-magnifying-glass-chart"></i>AI Legal Analysis</a>
       <a class="nav-item" data-view="chat"><i class="fa-solid fa-comments"></i>Chat with Agent</a>
       <a class="nav-item" data-view="lawyers"><i class="fa-solid fa-gavel"></i>Find a Lawyer</a>
 
-      <div class="nav-label">AI Tools</div>
-      <a class="nav-item nav-soon"><i class="fa-solid fa-file-signature"></i>Draft Petition</a>
-      <a class="nav-item nav-soon"><i class="fa-solid fa-file-shield"></i>Legal Notice Generator</a>
-      <a class="nav-item" data-view="library"><i class="fa-solid fa-book-open"></i>Acts &amp; Statutes</a>
-
       <div class="nav-label">Records</div>
       <a class="nav-item" data-view="history"><i class="fa-solid fa-clock-rotate-left"></i>Case History</a>
-      <a class="nav-item nav-soon"><i class="fa-solid fa-folder-open"></i>Documents</a>
+      <a class="nav-item" data-view="library"><i class="fa-solid fa-book"></i>Legal Library</a>
       <a class="nav-item" data-view="profile"><i class="fa-solid fa-user"></i>Profile</a>
-      <a class="nav-item nav-soon"><i class="fa-solid fa-gear"></i>Settings</a>
     </nav>
-
-    <div class="nav-label" style="margin-top:2px;">Recent</div>
-    <div class="nav" style="gap:2px;" id="recentList">
-      <a class="nav-item" style="font-size:12.5px;"><i class="fa-regular fa-message" style="font-size:12px;"></i>No cases yet</a>
-    </div>
 
     <div class="sidebar-foot">
       <div class="avatar-sm" id="userAvatar">?</div>
@@ -465,7 +351,6 @@
       <button class="icon-btn" id="signOutBtn" title="Sign out" style="width:32px;height:32px;flex-shrink:0;"><i class="fa-solid fa-arrow-right-from-bracket" style="font-size:13px;"></i></button>
     </div>
   </aside>
-
 
   <!-- ================= MAIN ================= -->
   <main class="main" id="mainScroll">
@@ -679,32 +564,6 @@
   </div>
 </div>
 
-<!-- ===== Command Palette ===== -->
-<div class="cmdk-overlay" id="cmdkOverlay">
-  <div class="cmdk-modal">
-    <div class="cmdk-input-row">
-      <i class="fa-solid fa-magnifying-glass"></i>
-      <input type="text" id="cmdkInput" placeholder="Search cases, statutes, lawyers, tools…">
-      <kbd style="background:rgba(255,255,255,0.08); border:1px solid var(--hair); border-radius:5px; padding:2px 6px; font-family:'JetBrains Mono',monospace; font-size:10px; color:var(--text-lo);">Esc</kbd>
-    </div>
-    <div class="cmdk-list" id="cmdkList">
-      <div class="cmdk-group-label">Navigate</div>
-      <div class="cmdk-item" data-action="view:dashboard"><i class="fa-solid fa-house"></i>Dashboard<span class="hint">Go to</span></div>
-      <div class="cmdk-item" data-action="view:analysis"><i class="fa-solid fa-magnifying-glass-chart"></i>AI Legal Analysis<span class="hint">Go to</span></div>
-      <div class="cmdk-item" data-action="view:chat"><i class="fa-solid fa-comments"></i>Chat with Agent<span class="hint">Go to</span></div>
-      <div class="cmdk-item" data-action="view:lawyers"><i class="fa-solid fa-gavel"></i>Find a Lawyer<span class="hint">Go to</span></div>
-      <div class="cmdk-item" data-action="view:history"><i class="fa-solid fa-clock-rotate-left"></i>Case History<span class="hint">Go to</span></div>
-      <div class="cmdk-item" data-action="view:library"><i class="fa-solid fa-book-open"></i>Acts &amp; Statutes<span class="hint">Go to</span></div>
-      <div class="cmdk-item" data-action="view:profile"><i class="fa-solid fa-user"></i>Profile<span class="hint">Go to</span></div>
-      <div class="cmdk-group-label">Actions</div>
-      <div class="cmdk-item" data-action="newcase"><i class="fa-solid fa-plus"></i>Start a new case<span class="hint">Create</span></div>
-      <div class="cmdk-item" data-action="newchat"><i class="fa-solid fa-message"></i>Continue a chat<span class="hint">Create</span></div>
-    </div>
-  </div>
-</div>
-
-<div class="toast" id="toast"></div>
-
 <script>
 /* ============================================================
    Nayay Bharat — backend wiring
@@ -813,13 +672,11 @@ async function onSignedIn(user){
   currentUser = user;
   authOverlay.style.display = "none";
   appRoot.classList.add("ready");
-  document.getElementById("appHero").style.display = "flex";
   const email = user.email || "Signed in";
   document.getElementById("userAvatar").textContent = email[0].toUpperCase();
   document.getElementById("userWho").textContent = email;
   await loadCases();
   await loadLawyers();
-  renderRecentList();
 }
 
 function onSignedOut(){
@@ -827,7 +684,6 @@ function onSignedOut(){
   activeCase = null;
   myCases = [];
   appRoot.classList.remove("ready");
-  document.getElementById("appHero").style.display = "none";
   authOverlay.style.display = "flex";
 }
 
@@ -1069,90 +925,6 @@ document.getElementById("sheetClose").addEventListener("click", closeSheet);
 document.getElementById("sheetCloseBtn").addEventListener("click", closeSheet);
 overlay.addEventListener("click", (e)=>{ if(e.target===overlay) closeSheet(); });
 
-/* ---------------- AI thinking sequence (real: holds until the actual API responds) ---------------- */
-const thinkSteps = [
-  { icon:"fa-brain", label:"Searching case context…" },
-  { icon:"fa-scale-balanced", label:"Reading applicable laws…" },
-  { icon:"fa-book", label:"Finding relevant precedents…" },
-  { icon:"fa-circle-check", label:"Answer ready" }
-];
-function showThinking(){
-  const box = document.createElement("div");
-  box.className = "thinking";
-  box.innerHTML = thinkSteps.map((s,i)=>
-    '<div class="think-step" data-i="'+i+'"><i class="fa-solid '+s.icon+'"></i><span>'+s.label+'</span>'+
-    (i<thinkSteps.length-1 ? '<span class="think-dots"><span></span><span></span><span></span></span>' : '')+'</div>'
-  ).join("");
-  chatBody.appendChild(box);
-  chatBody.scrollTop = chatBody.scrollHeight;
-  const stepEls = box.querySelectorAll(".think-step");
-  let i = 0, stopped = false, timer = null;
-  function step(){
-    if(stopped) return;
-    stepEls.forEach(s=>s.classList.remove("active"));
-    if(i>0) stepEls[i-1].classList.add("done");
-    if(i < stepEls.length - 1){ stepEls[i].classList.add("active"); i++; timer = setTimeout(step, 620); }
-    else{ stepEls[i].classList.add("active"); }
-  }
-  step();
-  return {
-    finish(){
-      return new Promise(resolve=>{
-        stopped = true;
-        if(timer) clearTimeout(timer);
-        stepEls.forEach(s=>{ s.classList.remove("active"); s.classList.add("done"); });
-        setTimeout(()=>{ box.remove(); resolve(); }, 350);
-      });
-    }
-  };
-}
-
-/* ---------------- Message action toolbar (copy / regenerate / like / dislike / share) ---------------- */
-function wireMsgActions(scope){
-  scope.querySelectorAll(".act-copy").forEach(btn=>{
-    btn.onclick = ()=>{
-      const msg = btn.closest(".msg");
-      const text = msg.cloneNode(true);
-      text.querySelectorAll(".msg-actions,.cite-box").forEach(n=>n.remove());
-      navigator.clipboard?.writeText(text.textContent.trim());
-      btn.classList.add("copied");
-      btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-      setTimeout(()=>{ btn.classList.remove("copied"); btn.innerHTML = '<i class="fa-regular fa-copy"></i>'; }, 1400);
-    };
-  });
-  scope.querySelectorAll(".act-like").forEach(btn=>{
-    btn.onclick = ()=>{
-      btn.classList.toggle("liked");
-      const dislike = btn.parentElement.querySelector(".act-dislike");
-      if(btn.classList.contains("liked")) dislike.classList.remove("disliked");
-    };
-  });
-  scope.querySelectorAll(".act-dislike").forEach(btn=>{
-    btn.onclick = ()=>{
-      btn.classList.toggle("disliked");
-      const like = btn.parentElement.querySelector(".act-like");
-      if(btn.classList.contains("disliked")) like.classList.remove("liked");
-    };
-  });
-  scope.querySelectorAll(".act-regen").forEach(btn=>{
-    btn.onclick = ()=>{
-      const msg = btn.closest(".msg");
-      const prior = msg.previousElementSibling;
-      if(prior && prior.classList.contains("user")){
-        msg.remove();
-        sendChat(prior.textContent);
-      }
-    };
-  });
-  scope.querySelectorAll(".act-share").forEach(btn=>{
-    btn.onclick = ()=>{
-      btn.innerHTML = '<i class="fa-solid fa-check"></i>';
-      showToast("Link copied (demo) — sharing isn't wired to a real destination yet.");
-      setTimeout(()=>btn.innerHTML = '<i class="fa-solid fa-share-nodes"></i>', 1200);
-    };
-  });
-}
-
 /* ---------------- Chat view ---------------- */
 const chatInput = document.getElementById("chatInput");
 const chatBody = document.getElementById("chatBody");
@@ -1200,8 +972,6 @@ async function sendChat(text){
 
   await supa.from("messages").insert({ case_id: activeCase.id, user_id: currentUser.id, role:"user", content:text });
 
-  const thinkingBox = showThinking();
-
   try{
     const res = await fetch("/api/chat", {
       method: "POST",
@@ -1213,22 +983,12 @@ async function sendChat(text){
     const reply = data.result || "No response generated.";
     chatHistory.push({ role:"assistant", content:reply });
     await supa.from("messages").insert({ case_id: activeCase.id, user_id: currentUser.id, role:"assistant", content:reply });
-    await thinkingBox.finish();
     const agentEl = document.createElement("div");
     agentEl.className = "msg agent";
-    agentEl.innerHTML = escapeHtml(reply).replace(/\n/g, "<br>") +
-      '<div class="msg-actions">' +
-      '<div class="msg-act act-copy" title="Copy"><i class="fa-regular fa-copy"></i></div>' +
-      '<div class="msg-act act-regen" title="Regenerate"><i class="fa-solid fa-rotate-right"></i></div>' +
-      '<div class="msg-act act-like" title="Like"><i class="fa-regular fa-thumbs-up"></i></div>' +
-      '<div class="msg-act act-dislike" title="Dislike"><i class="fa-regular fa-thumbs-down"></i></div>' +
-      '<div class="msg-act act-share" title="Share"><i class="fa-solid fa-share-nodes"></i></div>' +
-      '</div>';
+    agentEl.textContent = reply;
     chatBody.appendChild(agentEl);
-    wireMsgActions(agentEl);
     chatBody.scrollTop = chatBody.scrollHeight;
   } catch(e){
-    await thinkingBox.finish();
     const errEl = document.createElement("div");
     errEl.style.cssText = "color:#f08787; font-size:12px; text-align:center;";
     errEl.textContent = e.message || "Message failed to send.";
@@ -1415,136 +1175,6 @@ mainScroll.addEventListener("scroll", ()=>{
   else{ topbar.classList.remove("hide-nav"); }
   lastY = y;
 });
-
-/* ---------------- Toast ---------------- */
-let toastTimer = null;
-function showToast(msg){
-  const el = document.getElementById("toast");
-  el.textContent = msg;
-  el.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=> el.classList.remove("show"), 2600);
-}
-
-/* ---------------- "Coming soon" nav items ---------------- */
-document.querySelectorAll(".nav-item.nav-soon").forEach(item=>{
-  item.addEventListener("click", ()=>{
-    showToast(item.textContent.trim() + " is coming soon.");
-  });
-});
-
-/* ---------------- Recent cases (sidebar) ---------------- */
-function renderRecentList(){
-  const el = document.getElementById("recentList");
-  if(!myCases || myCases.length === 0){
-    el.innerHTML = '<a class="nav-item" style="font-size:12.5px; opacity:.5; cursor:default;"><i class="fa-regular fa-message" style="font-size:12px;"></i>No cases yet</a>';
-    return;
-  }
-  el.innerHTML = myCases.slice(0,2).map(c=>
-    '<a class="nav-item" style="font-size:12.5px;" data-case-id="'+c.id+'"><i class="fa-regular fa-message" style="font-size:12px;"></i>'+escapeHtml(c.title)+'</a>'
-  ).join("");
-  el.querySelectorAll("[data-case-id]").forEach(a=>{
-    a.addEventListener("click", ()=>{
-      const found = myCases.find(c=>c.id === a.dataset.caseId);
-      if(found) openCase(found);
-    });
-  });
-}
-
-/* ---------------- New Chat button ---------------- */
-document.getElementById("newChatBtn").addEventListener("click", ()=> {
-  goToView("chat");
-  renderChatForActiveCase();
-});
-
-/* ---------------- Hero tagline cycle (cosmetic) ---------------- */
-const heroWords = ["Research","Draft","Explain","Analyze","Verify"];
-let heroWordIdx = 0;
-const tagEl = document.getElementById("tagCycle");
-if(tagEl){
-  tagEl.style.transition = "opacity .25s ease";
-  setInterval(()=>{
-    tagEl.style.opacity = 0;
-    setTimeout(()=>{
-      heroWordIdx = (heroWordIdx+1) % heroWords.length;
-      tagEl.textContent = heroWords[heroWordIdx];
-      tagEl.style.opacity = 1;
-    }, 260);
-  }, 2200);
-}
-
-/* ---------------- Theme toggle (cosmetic) ---------------- */
-document.getElementById("themeBtn").addEventListener("click", function(){
-  document.documentElement.classList.toggle("alt-theme");
-  const icon = this.querySelector("i");
-  icon.classList.toggle("fa-moon");
-  icon.classList.toggle("fa-sun");
-});
-
-/* ---------------- Command palette ---------------- */
-const cmdkOverlay = document.getElementById("cmdkOverlay");
-const cmdkInput = document.getElementById("cmdkInput");
-const cmdkList = document.getElementById("cmdkList");
-let cmdkItems = [];
-let cmdkSel = 0;
-
-function refreshCmdkItems(){
-  cmdkItems = Array.from(cmdkList.querySelectorAll(".cmdk-item")).filter(i=>i.style.display!=="none");
-  cmdkItems.forEach((it,i)=> it.classList.toggle("sel", i===cmdkSel));
-}
-function openCmdk(){
-  cmdkOverlay.classList.add("open");
-  cmdkInput.value=""; filterCmdk();
-  setTimeout(()=>cmdkInput.focus(), 50);
-}
-function closeCmdk(){ cmdkOverlay.classList.remove("open"); }
-function filterCmdk(){
-  const q = cmdkInput.value.toLowerCase();
-  cmdkList.querySelectorAll(".cmdk-item").forEach(it=>{
-    it.style.display = it.textContent.toLowerCase().includes(q) ? "flex" : "none";
-  });
-  cmdkList.querySelectorAll(".cmdk-group-label").forEach(l=>{
-    let sib = l.nextElementSibling, any=false;
-    while(sib && sib.classList.contains("cmdk-item")){ if(sib.style.display!=="none") any=true; sib=sib.nextElementSibling; }
-    l.style.display = any ? "block" : "none";
-  });
-  cmdkSel = 0;
-  refreshCmdkItems();
-}
-function runCmdkAction(action){
-  if(action.startsWith("view:")){
-    const name = action.split(":")[1];
-    goToView(name);
-    if(name === "chat") renderChatForActiveCase();
-    if(name === "library") renderLibrary(libSearch.value);
-    if(name === "history") renderHistoryGrid();
-    if(name === "profile") renderProfile();
-  }
-  else if(action==="newcase"){
-    goToView("dashboard");
-    newCasePanel.style.display = "block";
-    setTimeout(()=> newCasePanel.scrollIntoView({ behavior:"smooth", block:"nearest" }), 200);
-  }
-  else if(action==="newchat"){ goToView("chat"); renderChatForActiveCase(); }
-  closeCmdk();
-}
-
-document.getElementById("cmdkOpen").addEventListener("click", openCmdk);
-document.addEventListener("keydown", (e)=>{
-  if((e.ctrlKey || e.metaKey) && e.key.toLowerCase()==="k"){ e.preventDefault(); if(currentUser) openCmdk(); }
-  if(e.key==="Escape" && cmdkOverlay.classList.contains("open")) closeCmdk();
-  if(cmdkOverlay.classList.contains("open")){
-    if(e.key==="ArrowDown"){ e.preventDefault(); cmdkSel = Math.min(cmdkSel+1, cmdkItems.length-1); refreshCmdkItems(); }
-    if(e.key==="ArrowUp"){ e.preventDefault(); cmdkSel = Math.max(cmdkSel-1, 0); refreshCmdkItems(); }
-    if(e.key==="Enter" && cmdkItems[cmdkSel]){ runCmdkAction(cmdkItems[cmdkSel].dataset.action); }
-  }
-});
-cmdkInput.addEventListener("input", filterCmdk);
-cmdkList.querySelectorAll(".cmdk-item").forEach(it=>{
-  it.addEventListener("click", ()=> runCmdkAction(it.dataset.action) );
-});
-cmdkOverlay.addEventListener("click", (e)=>{ if(e.target===cmdkOverlay) closeCmdk(); });
-refreshCmdkItems();
 </script>
 </body>
 </html>

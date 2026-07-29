@@ -80,6 +80,15 @@ Nyaya-Agent provides legal information based on Indian statutes. It is **not**
 a substitute for professional legal advice. Always consult a licensed advocate
 for your specific situation.
 
+## Versioning
+
+The live site is always the latest version. Full history of what changed and
+why is in [CHANGELOG.md](./CHANGELOG.md). Past frontend snapshots are kept
+browsable at `apps/web/versions/` (open any `.html` file directly — they're
+self-contained, no build step). Each release is also tagged in git
+(`git tag`), so `git checkout v0.5.0` gets you the exact commit for that
+version.
+
 ## Contributing
 
 The current dataset covers ~100 of the most commonly cited sections across
