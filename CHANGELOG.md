@@ -9,6 +9,34 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
+## v0.9.0 — "Nayay Bharat Light" — fresh design, full rewire
+**Frontend:** `apps/web/versions/v0.9.0-nayay-bharat-light.html` (= live `apps/web/index.html`)
+
+A completely new design from scratch (light/warm palette — cream paper
+background, maroon/navy/gold/mint accents, Fraunces serif + IBM Plex Mono,
+top nav instead of a sidebar) fully wired to the same backend as every
+prior version, plus everything built in v0.5.0–v0.8.0 carried forward:
+
+- **Auth gate** — the new design shipped with no login screen at all; added
+  one (password/magic-link/anonymous-bypass) matching the new palette
+- **Account dropdown** — avatar click reveals Case History / Legal Library /
+  Profile / Sign out, since the horizontal top nav has room for only the
+  4 primary views (Dashboard/Analysis/Chat/Lawyers)
+- **Working mobile menu** — same class of bug as v0.7.0: the raw design's
+  `.nav-links{display:none}` on mobile left zero way to navigate on a
+  phone. Added a real slide-in mobile nav with a hamburger button and
+  backdrop, this time from the start rather than as a follow-up patch
+- **Real stats, not fake SaaS numbers** — the mockup's "AI Credits Left"
+  and "Saved Lawyers" cards had no backing concept in the schema. Replaced
+  with four genuinely real metrics: Active Cases, Cases Analyzed,
+  Consultations Requested, Verified Lawyers (all live Supabase counts)
+- **New Case modal, statute detail modal, Case Timeline card** — none of
+  these existed in the raw upload; added them matching the established
+  patterns (structured `/api/analyze` output, `timeline_events` table)
+- Verified the same way every version has been: JS syntax-checked,
+  every element reference cross-checked against the HTML, div/section/
+  header/nav balance confirmed, Vite passthrough byte-identical
+
 ## v0.8.0 — Case Timeline
 **Frontend:** `apps/web/versions/v0.8.0-nayay-bharat-v4.html` (= live `apps/web/index.html`)
 
