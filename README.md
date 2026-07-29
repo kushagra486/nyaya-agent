@@ -4,14 +4,16 @@ Open-source, privacy-first legal intelligence tools for the Indian legal
 transition — IPC → BNS, CrPC → BNSS, Indian Evidence Act → BSA.
 
 **Live app (full functionality, incl. AI statute matching):** deployed on Vercel — see repo "About" link once deployed.
-**Static mirror (Section Correlator + Full Register only):** https://kushagra486.github.io/nyaya-agent/
+**Static mirror:** https://kushagra486.github.io/nyaya-agent/ (note: Statute Matching/Chat/Lawyer-booking need `/api/*`, which only exists on the Vercel deployment — see below)
 
 ## What's here
 
 ```
 nyaya-agent/
-├── apps/web/              # Vite + React + TypeScript web app
-│   └── api/analyze.js     # Vercel serverless function — holds the Groq key server-side
+├── apps/web/              # Single-file static frontend (index.html) + Vercel serverless functions
+│   ├── index.html         # The whole app: Dashboard, AI Legal Analysis, Chat, Lawyers, History, Library, Profile
+│   ├── api/analyze.js     # Vercel serverless function — holds the Groq key server-side
+│   └── api/chat.js        # Multi-turn chat proxy, same key handling
 ├── apps/mobile/           # Flutter mobile app (Android/iOS) — same Supabase + same Vercel API
 ├── packages/legal-data/   # Ingestion pipeline: bare-act mapping CSVs → Supabase pgvector
 ├── packages/database/     # schema.sql for the app backend (profiles/cases/messages/lawyers/consultations)
@@ -20,40 +22,40 @@ nyaya-agent/
 
 ### apps/web — the web app
 
-A single-page app with three tools:
+A single self-contained `index.html` (no build step needed — Vite just passes
+it through unchanged) implementing the full product:
 
-1. **Section Correlator** — type any old or new section number (IPC/CrPC/Evidence
-   Act ↔ BNS/BNSS/BSA) and get an instant cross-reference. Pure client-side.
-2. **Statute Matching** — describe a situation in plain language; the app scores
-   it against the local mapping dataset for candidate sections, then calls
-   `/api/analyze` (a Vercel serverless function) which asks Llama 3.3 70B via
-   Groq to explain the likely current-law citations — grounded only in
-   sections it actually found, never invented.
-3. **Full Register** — browse and filter every mapped section. Pure client-side.
+1. **Auth** — email/password + magic link, gates everything below it.
+2. **Dashboard** — real cases from Supabase, "+ New Case" intake, status pills.
+3. **AI Legal Analysis** — per-case, calls `/api/analyze`, saves structured
+   facts/statutes/steps JSON back to the case row. Statute chips open a
+   bottom-sheet with the real citation explanation.
+4. **Chat with Agent** — multi-turn, persisted to the `messages` table, calls
+   `/api/chat` with running history + case context.
+5. **Find a Lawyer** — real directory from Supabase, specialization filter
+   pills, consultation requests written to `consultations`.
+6. **Case History** — every case, read-only list.
+7. **Legal Library** — searchable table of all 107 IPC/CrPC/Evidence Act ↔
+   BNS/BNSS/BSA mappings, embedded inline (no fetch needed).
+8. **Profile** — account email + sign out.
 
 **Key handling:** the Groq API key is a server-side environment variable in the
 Vercel project (`GROQ_API_KEY`) — it is never written into source, never
 bundled into the frontend, and never sent to the browser. Visitors don't need
-their own key. This means Statute Matching only works on the Vercel
-deployment; the GitHub Pages mirror is static-only, so that one tool won't
-respond there (Section Correlator and Full Register work everywhere).
+their own key. This means Analysis/Chat/Lawyer-booking only fully work on the
+Vercel deployment; the GitHub Pages mirror is static-only, so those calls will
+error there (Supabase-backed features like Dashboard/Auth still work anywhere,
+since Supabase is called directly from the browser via its own client library).
 
-Because the key is shared across all visitors, `api/analyze.js` includes a
-best-effort per-IP rate limit (resets on cold start — a speed bump, not a
-substitute for a real limiter like Upstash/Vercel KV if traffic grows) and
-caps input length and response tokens. Consider enabling Vercel's built-in Bot
-Protection on this project for extra safety.
+Because the key is shared across all visitors, `api/analyze.js` and
+`api/chat.js` include a best-effort per-IP rate limit (resets on cold start —
+a speed bump, not a substitute for a real limiter like Upstash/Vercel KV if
+traffic grows) and cap input length and response tokens. Consider enabling
+Vercel's built-in Bot Protection on this project for extra safety.
 
-Run locally:
-
-```bash
-cd apps/web
-npm install
-npm run dev
-```
-The `/api/analyze` route needs `vercel dev` (not plain `vite dev`) to run
-locally with the serverless function, or use `vercel env pull` after linking
-the project.
+Run locally: just open `apps/web/index.html` in a browser, or `cd apps/web && vercel dev`
+if you want `/api/*` working locally too (plain `vite dev`/`npm run dev` won't
+run the serverless functions).
 
 ### apps/mobile — the Flutter mobile app
 
