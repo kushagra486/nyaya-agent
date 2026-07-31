@@ -10,7 +10,7 @@ snapshots are archived and browsable at `apps/web/versions/`.
 ---
 
 ## v0.9.2 — CRITICAL FIX: entire app was non-functional
-**Frontend:** `apps/web/versions/v0.9.2-nayay-bharat-light.html` (= live `apps/web/index.html`)
+**Frontend:** `apps/web/versions/v0.9.2-nayay-bharat-light.html`
 
 The v0.9.0 rebuild-from-scratch introduced a serious bug: the `<script
 src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">` library include
@@ -29,8 +29,8 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
-## v0.9.2 — Login page removed
-**Frontend:** `apps/web/versions/v0.9.2-nayay-bharat-light.html` (= live `apps/web/index.html`)
+## v0.9.3 — Login page removed
+**Frontend:** `apps/web/versions/v0.9.3-nayay-bharat-light.html` (= live `apps/web/index.html`)
 
 v0.9.1's auto-anonymous-sign-in still fell back to a full blocking login
 screen whenever it failed — and given repeated reports of getting stuck
