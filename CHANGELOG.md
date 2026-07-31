@@ -29,6 +29,31 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.9.4 — GitHub Pages works standalone; found the real "login" cause
+**Frontend:** `apps/web/versions/v0.9.4-nayay-bharat-light.html` (= live `apps/web/index.html`)
+
+- **Found the actual root cause of "having to log into Vercel":** the
+  `nyaya-agent` Vercel project has **Vercel Authentication (SSO Protection)
+  enabled** for `all_except_custom_domains` — every visitor to the
+  `.vercel.app` URL is being forced through a Vercel login wall. This is a
+  dashboard setting, not a code bug; I don't have permission to change it
+  via the Vercel API (confirmed: 403 forbidden). **Action needed:** Vercel
+  dashboard → nyaya-agent → Settings → Deployment Protection → Vercel
+  Authentication → turn off (or restrict to preview only).
+- **Made GitHub Pages a fully standalone deployment:** `/api/analyze` and
+  `/api/chat` previously used relative paths (`fetch("/api/analyze")`),
+  which only resolve correctly when the HTML is served from the Vercel
+  domain itself. Added an `API_BASE` constant pointing at the Vercel
+  deployment and switched both calls to absolute URLs, so the exact same
+  static file works identically whether served from Vercel, GitHub Pages,
+  or anywhere else — the AI features aren't tied to which host serves the
+  page. (Note: this still depends on the Vercel Authentication toggle
+  above being off, since that protection applies to the API routes too,
+  not just page views.)
+- Added an explicit "external script tag present" + "API_BASE in use"
+  check to the validation routine, alongside the existing JS-syntax/
+  ID-cross-reference/structural-balance checks.
+
 ## v0.9.3 — Login page removed
 **Frontend:** `apps/web/versions/v0.9.3-nayay-bharat-light.html` (= live `apps/web/index.html`)
 
