@@ -29,6 +29,15 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.9.6 — Brand name changed to "Nyay Bharat"
+**Frontend:** `apps/web/versions/v0.9.6-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Changed the displayed brand name from "Nyaya Bharat" to "Nyay Bharat" —
+page title, hero heading, chat header, mobile nav header, and the top
+script comment. The underlying repo name and Vercel domain
+(`nyaya-agent`) are untouched, since renaming those would break the live
+API connection — this only affects the text shown on the page itself.
+
 ## v0.9.5 — Fix "Nayay" → "Nyaya" brand spelling
 **Frontend:** `apps/web/versions/v0.9.5-nyaya-bharat-light.html` (= live `apps/web/index.html`)
 
