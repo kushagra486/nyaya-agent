@@ -29,6 +29,15 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.9.5 — Fix "Nayay" → "Nyaya" brand spelling
+**Frontend:** `apps/web/versions/v0.9.5-nyaya-bharat-light.html` (= live `apps/web/index.html`)
+
+Fixed the brand name spelling throughout the page — page title, hero
+heading, chat header, mobile nav header, and the top script comment all
+said "Nayay Bharat" (letters transposed); corrected to "Nyaya Bharat",
+matching the correct Sanskrit/Hindi romanization of न्याय (justice) and
+the project's own repo name (`nyaya-agent`) used everywhere else.
+
 ## v0.9.4 — GitHub Pages works standalone; found the real "login" cause
 **Frontend:** `apps/web/versions/v0.9.4-nayay-bharat-light.html` (= live `apps/web/index.html`)
 
