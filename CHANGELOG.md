@@ -9,6 +9,26 @@ snapshots are archived and browsable at `apps/web/versions/`.
 
 ---
 
+## v0.9.2 — CRITICAL FIX: entire app was non-functional
+**Frontend:** `apps/web/versions/v0.9.2-nayay-bharat-light.html` (= live `apps/web/index.html`)
+
+The v0.9.0 rebuild-from-scratch introduced a serious bug: the `<script
+src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2">` library include
+was never added to `<head>` — it existed in every prior dark-theme version
+but was missed when hand-writing this fresh design's markup. Without it,
+`window.supabase` is undefined, so the very first line of the app script
+(`window.supabase.createClient(...)`) threw immediately and **the entire
+script died on load** — not just login. Nav, cases, chat, lawyers,
+everything was silently broken since v0.9.0. This is why "skip login"
+(v0.9.1) appeared not to work: the auto-anonymous-sign-in code never even
+ran, because the script had already crashed one line in.
+
+Root cause found by directly grepping for the CDN script tag rather than
+just re-running the JS-syntax/ID-reference checks — those checks validate
+the script's own code and its DOM references, but say nothing about
+whether external dependencies are actually included. Added an explicit
+external-dependency check to the validation routine going forward.
+
 ## v0.9.1 — Skip the login screen by default
 **Frontend:** `apps/web/versions/v0.9.1-nayay-bharat-light.html` (= live `apps/web/index.html`)
 
