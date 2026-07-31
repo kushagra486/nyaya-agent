@@ -29,6 +29,24 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.9.2 — Login page removed
+**Frontend:** `apps/web/versions/v0.9.2-nayay-bharat-light.html` (= live `apps/web/index.html`)
+
+v0.9.1's auto-anonymous-sign-in still fell back to a full blocking login
+screen whenever it failed — and given repeated reports of getting stuck
+there, that fallback was doing more harm than good. Removed the login
+page entirely:
+
+- The app always renders immediately; there is no login form anywhere
+- A background session connects automatically (anonymous sign-in) so
+  data features work once Supabase is configured correctly
+- If the background connection genuinely fails, a small non-blocking
+  banner at the top explains why (pointing at the exact Supabase toggle
+  to check) — it never gates the UI behind a form again
+- Sign out (still available via the account dropdown / Profile) now
+  reconnects a fresh background session immediately afterward, so there's
+  no dead end there either
+
 ## v0.9.1 — Skip the login screen by default
 **Frontend:** `apps/web/versions/v0.9.1-nayay-bharat-light.html` (= live `apps/web/index.html`)
 

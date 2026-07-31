@@ -219,8 +219,7 @@
   .auth-switch button{background:none; border:none; color:var(--maroon); font-size:12.5px; text-align:left; cursor:pointer; padding:0; font-weight:600;}
   .auth-error{color:#a63333; font-size:12.5px; margin:8px 0 0;}
   .auth-notice{color:var(--mint); font-size:12.5px; margin:8px 0 0;}
-  #authApp{display:none;}
-  #authApp.ready{display:block;}
+  #authApp{display:block;}
 
   /* ============ Account dropdown ============ */
   .acct-wrap{position:relative;}
@@ -274,33 +273,12 @@
 </head>
 <body>
 
-<!-- ============ AUTH OVERLAY ============ -->
-<div id="authOverlay">
-  <div class="card auth-card">
-    <div class="auth-brand">
-      <div class="roundel" style="width:36px;height:36px;font-size:15px;"><i class="fa-solid fa-scale-balanced"></i></div>
-      <div><h1 style="font-family:'Fraunces',serif; font-size:16px; margin:0; font-weight:600;">Nayay <em style="color:var(--maroon); font-style:normal;">Bharat</em></h1></div>
-    </div>
-    <div id="authSignedOut">
-      <h2 class="auth-title" id="authTitle">Welcome back</h2>
-      <p class="auth-sub" id="authSub">Sign in to track cases, get AI-assisted statute matching, and connect with verified advocates.</p>
-      <input class="auth-field" id="authName" type="text" placeholder="Full name" style="display:none;">
-      <input class="auth-field" id="authEmail" type="email" placeholder="Email">
-      <input class="auth-field" id="authPassword" type="password" placeholder="Password">
-      <button class="btn-primary full" id="authSubmit">Sign in</button>
-      <div class="auth-error" id="authError" style="display:none;"></div>
-      <div class="auth-notice" id="authNotice" style="display:none;"></div>
-      <div class="auth-switch">
-        <button id="authToSignup">Create an account</button>
-        <button id="authToSignin" style="display:none;">Sign in with password</button>
-        <button id="authToMagic">Use a magic link instead</button>
-        <button id="authBypass" style="color:var(--ink-soft);">Continue without an account (dev/testing)</button>
-      </div>
-    </div>
-  </div>
-</div>
 
-<div id="authApp">
+<!-- Small non-blocking banner shown only if the background connection
+     genuinely fails - never blocks the UI like a login page would. -->
+<div id="connBanner" style="display:none; position:fixed; top:0; left:0; right:0; z-index:80; background:#5c2020; color:#f7ecdc; text-align:center; padding:10px 16px; font-size:12.5px;"></div>
+
+<div id="authApp" class="ready">
   <!-- ============ TOP NAV ============ -->
   <header class="topnav">
     <div class="nav-brand">
@@ -618,81 +596,12 @@ let activeCase = null;
 let myCases = [];
 let chatHistory = [];
 
-const authOverlay = document.getElementById("authOverlay");
-const authApp = document.getElementById("authApp");
-let authMode = "signin";
-
-function setAuthMode(mode){
-  authMode = mode;
-  const title = document.getElementById("authTitle");
-  const sub = document.getElementById("authSub");
-  const nameField = document.getElementById("authName");
-  const passField = document.getElementById("authPassword");
-  const submitBtn = document.getElementById("authSubmit");
-  document.getElementById("authError").style.display = "none";
-  document.getElementById("authNotice").style.display = "none";
-  nameField.style.display = mode === "signup" ? "block" : "none";
-  passField.style.display = mode === "magic" ? "none" : "block";
-  if(mode === "signup"){ title.textContent = "Create your account"; submitBtn.textContent = "Sign up"; }
-  else if(mode === "magic"){ title.textContent = "Magic link"; sub.textContent = "We'll email you a one-time sign-in link."; submitBtn.textContent = "Send magic link"; }
-  else { title.textContent = "Welcome back"; sub.textContent = "Sign in to track cases, get AI-assisted statute matching, and connect with verified advocates."; submitBtn.textContent = "Sign in"; }
-  document.getElementById("authToSignup").style.display = mode === "signup" ? "none" : "block";
-  document.getElementById("authToSignin").style.display = mode === "signin" ? "none" : "block";
-  document.getElementById("authToMagic").style.display = mode === "magic" ? "none" : "block";
-}
-document.getElementById("authToSignup").addEventListener("click", ()=>setAuthMode("signup"));
-document.getElementById("authToSignin").addEventListener("click", ()=>setAuthMode("signin"));
-document.getElementById("authToMagic").addEventListener("click", ()=>setAuthMode("magic"));
-document.getElementById("authBypass").addEventListener("click", async ()=>{
-  const errEl = document.getElementById("authError");
-  errEl.style.display = "none";
-  const link = document.getElementById("authBypass");
-  const original = link.textContent;
-  link.textContent = "Signing you in…";
-  try{
-    const { error } = await supa.auth.signInAnonymously();
-    if(error) throw error;
-  } catch(e){
-    errEl.textContent = "Anonymous sign-in isn't enabled on this Supabase project yet — enable it under Authentication > Sign In / Providers. (" + (e.message||"") + ")";
-    errEl.style.display = "block";
-    link.textContent = original;
-  }
-});
-
-document.getElementById("authSubmit").addEventListener("click", async ()=>{
-  const errEl = document.getElementById("authError");
-  const noticeEl = document.getElementById("authNotice");
-  errEl.style.display = "none";
-  noticeEl.style.display = "none";
-  const email = document.getElementById("authEmail").value.trim();
-  const password = document.getElementById("authPassword").value;
-  const fullName = document.getElementById("authName").value.trim();
-  try{
-    if(authMode === "signup"){
-      const { error } = await supa.auth.signUp({ email, password, options: { data: { full_name: fullName } } });
-      if(error) throw error;
-      noticeEl.textContent = "Account created — check your email to confirm, then sign in.";
-      noticeEl.style.display = "block";
-    } else if(authMode === "magic"){
-      const { error } = await supa.auth.signInWithOtp({ email, options: { emailRedirectTo: window.location.origin } });
-      if(error) throw error;
-      noticeEl.textContent = "Magic link sent — check your email.";
-      noticeEl.style.display = "block";
-    } else {
-      const { error } = await supa.auth.signInWithPassword({ email, password });
-      if(error) throw error;
-    }
-  } catch(e){
-    errEl.textContent = e.message || "Something went wrong.";
-    errEl.style.display = "block";
-  }
-});
+const connBanner = document.getElementById("connBanner");
 
 async function onSignedIn(user){
   currentUser = user;
-  authOverlay.style.display = "none";
-  authApp.classList.add("ready");
-  const email = user.email || "Signed in";
+  connBanner.style.display = "none";
+  const email = user.email || "Guest session";
   document.getElementById("acctEmail").textContent = email;
   document.getElementById("acctBtn").textContent = email[0].toUpperCase();
   await loadCases();
@@ -702,30 +611,24 @@ function onSignedOut(){
   currentUser = null;
   activeCase = null;
   myCases = [];
-  authApp.classList.remove("ready");
-  authOverlay.style.display = "flex";
 }
 
-/* On initial load with no existing session, sign in anonymously right away
-   so there's no login screen to click through by default. This is still a
-   real Supabase session (real auth.uid()), so RLS on cases/messages/lawyers/
-   consultations works normally - it's not a fake bypass. If the user
-   explicitly signs out later, the auth screen is shown normally (their
-   choice is respected, not immediately re-bypassed). If anonymous sign-in
-   isn't enabled on the Supabase project, falls back to the auth screen with
-   a clear message pointing at the toggle to flip. */
+/* There is no login page. The app connects a background session
+   automatically; if that ever fails, a small non-blocking banner explains
+   why instead of gating the whole UI behind a form. Real user accounts can
+   still exist and be signed into elsewhere (e.g. via a magic link you send
+   yourself through the Supabase dashboard) - this app just never requires
+   filling in a login form to proceed. */
 async function ensureSession(){
   const { data } = await supa.auth.getSession();
   if(data.session){ onSignedIn(data.session.user); return; }
   try{
     const { error } = await supa.auth.signInAnonymously();
     if(error) throw error;
-    // onAuthStateChange below will fire onSignedIn once the session lands
+    // onAuthStateChange below fires onSignedIn once the session lands
   } catch(e){
-    onSignedOut();
-    const errEl = document.getElementById("authError");
-    errEl.textContent = "Couldn't sign you in automatically — enable \"Anonymous Sign-Ins\" in Supabase (Authentication → Sign In / Providers), or sign in manually below. (" + (e.message || "") + ")";
-    errEl.style.display = "block";
+    connBanner.textContent = "Couldn't connect automatically — enable \"Anonymous Sign-Ins\" in Supabase (Authentication → Sign In / Providers). (" + (e.message || "") + ")";
+    connBanner.style.display = "block";
   }
 }
 ensureSession();
@@ -733,7 +636,7 @@ supa.auth.onAuthStateChange((event, session)=>{
   if(session) onSignedIn(session.user); else onSignedOut();
 });
 
-function doSignOut(){ supa.auth.signOut(); }
+function doSignOut(){ supa.auth.signOut().then(()=> ensureSession()); }
 document.getElementById("acctSignOut").addEventListener("click", doSignOut);
 document.getElementById("profileSignOutBtn").addEventListener("click", doSignOut);
 
