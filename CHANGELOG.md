@@ -29,6 +29,33 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.11.0 — Document Vault with clause-level AI review
+**Frontend:** `apps/web/versions/v0.11.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Spec item #4, fully free — no new external accounts:
+
+- Dashboard's "Upload Document" tile is live (was "coming soon"). Upload a
+  PDF or DOCX (25MB max) and it: extracts text client-side (`pdf.js` for
+  PDFs, `mammoth.js` for DOCX — both open source, both run in the
+  browser), auto-creates a case from the file, uploads the original file
+  to a private Supabase Storage bucket, and sends the extracted text to a
+  new `/api/review-document` endpoint for clause-by-clause AI review.
+- Each clause gets a risk level (low/medium/high) against a fixed rubric —
+  unlimited liability, one-sided termination rights, auto-renewal without
+  notice, broad indemnification flagged high; ambiguous/missing-protection
+  terms flagged medium; standard mutual terms flagged low.
+- New **Documents** view (account menu / mobile nav): lists every uploaded
+  document with its review status; click one to see the full clause
+  breakdown with risk badges and a persistent AI-disclaimer.
+- New tables: `documents`, `document_clauses`, plus a private
+  `documents` Storage bucket scoped per-user via storage RLS
+  (`migration_004_documents.sql`).
+
+**Still not built from the spec:** Multilingual support, Hearing
+reminders (needs your Twilio/SendGrid/FCM decision), Legal Pulse
+(eCourts scraper + OpenNyAI + RSS + trending — the biggest remaining
+lift).
+
 ## v0.10.0 — Multi-Agent Chat, Citation Generator, Client Status Page
 **Frontend:** `apps/web/versions/v0.10.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 
