@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: "Too many requests — please wait a minute and try again." });
   }
 
-  const { caseContext, history } = req.body || {};
+  const { caseContext, history, agentType } = req.body || {};
   if (!Array.isArray(history) || history.length === 0) {
     return res.status(400).json({ error: "history (array of {role, content}) is required." });
   }
@@ -51,10 +51,29 @@ export default async function handler(req, res) {
     content: String(m.content || "").slice(0, MAX_MESSAGE_CHARS),
   }));
 
-  const systemPrompt = `You are a legal-information assistant for Indian law (BNS/BNSS/BSA and their IPC/CrPC/Evidence Act predecessors), continuing a conversation about a specific case.
-Case context: ${String(caseContext || "").slice(0, 1500)}
+  const safeContext = String(caseContext || "").slice(0, 1500);
+  const agent = ["research", "drafting", "compliance"].includes(agentType) ? agentType : "research";
+
+  const AGENT_PROMPTS = {
+    research: `You are the Research Agent for Indian law (BNS/BNSS/BSA and their IPC/CrPC/Evidence Act predecessors), continuing a conversation about a specific case.
+Case context: ${safeContext}
+Focus on: identifying relevant statutes, constitutional provisions, and the general shape of precedent that would apply (without inventing specific case citations you cannot verify).
 Never invent a statute section number — if unsure, say so plainly.
-Keep answers focused and practical. End every response with a short reminder that this is legal information, not legal advice.`;
+Keep answers focused and practical. End every response with a short reminder that this is legal information, not legal advice.`,
+
+    drafting: `You are the Drafting Agent for Indian law, helping structure a legal document for this case (a legal notice, a complaint outline, or similar) — never a court-filed petition itself, and never something the user should submit without a licensed advocate reviewing it first.
+Case context: ${safeContext}
+When asked to draft something, produce a clearly structured document: heading, parties, statement of facts, the specific ask/relief sought, and a closing. Use formal but plain Indian legal-letter conventions. Use placeholders like [Your Name] / [Date] / [Opposing Party] where specifics aren't known.
+Never invent a statute section number. Always end with: "This is a draft for your review and a licensed advocate's signature — it has not been filed and should not be submitted as-is."`,
+
+    compliance: `You are the Compliance Agent for Indian law, specifically checking that legal references in this conversation are current.
+Case context: ${safeContext}
+Your job: cross-check any statute reference (yours or the user's) against whether it's the CURRENT law. India replaced the IPC/CrPC/Evidence Act with the BNS/BNSS/BSA effective 1 July 2024. If a message cites an old-code section (e.g. "IPC 302", "Section 420", "CrPC 154"), flag it explicitly and give the current BNS/BNSS/BSA equivalent if you can identify it with confidence; if you cannot map it confidently, say so rather than guessing.
+Never invent a statute section number. Keep responses short and focused specifically on currency/compliance of citations, not general case strategy.
+End every response with a short reminder that this is legal information, not legal advice.`,
+  };
+
+  const systemPrompt = AGENT_PROMPTS[agent];
 
   try {
     const groqRes = await fetch(GROQ_ENDPOINT, {

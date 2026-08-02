@@ -29,6 +29,40 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.10.0 — Multi-Agent Chat, Citation Generator, Client Status Page
+**Frontend:** `apps/web/versions/v0.10.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Three more items from the backend spec, all buildable on the existing
+Supabase + Vercel stack with zero new external accounts:
+
+- **Multi-Agent Chat** (spec item #2) — Chat is no longer one generic
+  assistant. Three tabs (Research / Drafting / Compliance), each with a
+  distinct system prompt in `api/chat.js`: Research focuses on statutes/
+  precedent shape, Drafting structures legal notices/complaint outlines
+  (never a filed petition), Compliance specifically cross-checks whether
+  citations use the current BNS/BNSS/BSA vs. the old IPC/CrPC/Evidence Act.
+  Messages are tagged with `agent_type` and each tab keeps its own
+  conversation thread per case (`migration_003_multiagent_status.sql`).
+- **Citation Generator** (spec item #3) — new view, pure deterministic
+  formatting per the spec's own recommendation (no AI call): SCC-style,
+  AIR-style, and a plain neutral citation from case name/court/year/
+  volume/page, each with a one-click copy button.
+- **Client-facing status page** (spec item #6) — "Share Case Status Link"
+  in the Analysis view generates a `?status=TOKEN` URL. Visiting that URL
+  shows a read-only case-status card (title, status, filed date, last
+  updated) with **no login required** — it bypasses the entire
+  authenticated app and reads through a new `get_case_status_by_token()`
+  Postgres function (security definer) that deliberately returns only
+  those four fields, never `ai_analysis`, `raw_description`, messages, or
+  documents.
+
+**Still not built from the spec:** Document Vault with clause review
+(needs file upload + text extraction), Multilingual support, Hearing
+reminders (needs Twilio/SendGrid/FCM credentials), and Legal Pulse
+(eCourts scraper + OpenNyAI + RSS aggregation + trending — the biggest
+remaining lift, and OpenNyAI specifically needs a Python ML runtime
+Vercel's Node functions can't run).
+
 ## v0.9.6 — Brand name changed to "Nyay Bharat"
 **Frontend:** `apps/web/versions/v0.9.6-nyay-bharat-light.html` (= live `apps/web/index.html`)
 
