@@ -1,7 +1,10 @@
-# Nyaya-Agent :: Legal Pulse judgment structuring dependencies
+# Nyaya-Agent :: OpenNyAI judgment structuring dependencies
 # Requires Python 3.8-3.10 specifically - opennyai's spaCy/thinc/Cython
 # toolchain does not build on newer Python versions (confirmed: fails on
 # 3.12 with a Cython compile error against thinc/backends/numpy_ops.pyx).
+# Deliberately kept in its own file, separate from requirements-ecourts.txt -
+# the ecourts cause-list job runs on a newer Python where opennyai can't
+# even install, so they must never be installed together.
 
 opennyai
 requests>=2.31.0

@@ -1,0 +1,8 @@
+# Nyaya-Agent :: eCourts Cause List fetcher dependencies
+# Installs fine on any modern Python (verified on 3.12 in development) -
+# kept in a separate file from requirements.txt (OpenNyAI's deps) since
+# that one requires Python 3.8-3.10 specifically and would break this job
+# if installed together.
+
+ecourts
+requests>=2.31.0

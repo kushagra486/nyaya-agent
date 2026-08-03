@@ -29,6 +29,51 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.2.0 — eCourts Cause Lists — all 11 backend spec items now attempted
+**Frontend:** `apps/web/versions/v1.2.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Spec item #8, the last one. Higher confidence than v1.1.0's OpenNyAI
+piece — this was written against the **actual installed source code** of
+`openjustice-in/ecourts` (PyPI package `ecourts`), not just documentation:
+
+- The library has a **genuine automated CAPTCHA solver** (OpenCV image
+  preprocessing tuned to eCourts' specific CAPTCHA format + Tesseract
+  OCR) — a real, published, cited approach, not a "pause for a human"
+  workaround like most other eCourts scrapers found during research.
+- Scoped to **"Get Cause List"** specifically — the one operation the
+  library's own docs mark as fully supported (case-number and party-name
+  search are still work-in-progress upstream).
+- New `scripts/fetch_cause_lists.py`: verified end-to-end except the
+  final live call to the real government portal (not reachable from the
+  build sandbox) — import structure, `Court`/`ECourt` instantiation, and
+  method signatures were all confirmed working against the real installed
+  package before writing this script, not guessed.
+- New GitHub Actions workflow (`ecourts-causelists.yml`, daily), installs
+  `tesseract-ocr` via apt-get (a real system dependency the library's
+  CAPTCHA solver shells out to) — kept as a **separate requirements file**
+  (`requirements-ecourts.txt`) from OpenNyAI's, since installing both
+  together would break whichever job runs on the "wrong" Python version.
+- Seeded with 3 High Courts (Karnataka, Kerala, Madras) from the
+  library's own covered-courts list — note that **Delhi, Punjab &
+  Haryana, and Madhya Pradesh High Courts aren't covered** by this
+  library at all (they run separate portals outside
+  `hcservices.ecourts.gov.in`).
+- New **Cause Lists** tab in Legal Pulse.
+
+**All 11 items from the original backend spec have now been built or
+attempted**, closing out this phase of the project:
+1. Case Timeline · 2. Multi-Agent Chat · 3. Citation Generator ·
+4. Document Vault · 5. Multilingual · 6. Client Status Page ·
+7. Hearing Reminders · 8. eCourts Cause Lists (this release) ·
+9. OpenNyAI structuring · 10. RSS aggregation · 11. Trending feed.
+
+Items 8 and 9 carry real, clearly-documented residual risk (a government
+portal that can change without notice, and a pipeline call that couldn't
+be test-run before shipping, respectively) — everything else has been
+validated the same rigorous way throughout this project: syntax-checked,
+every element/function reference cross-checked, structural balance
+confirmed, Vite passthrough byte-identical.
+
 ## v1.1.0 — OpenNyAI judgment structuring (via Indian Kanoon, not eCourts)
 **Frontend:** `apps/web/versions/v1.1.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 
