@@ -29,6 +29,35 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.13.0 — Legal Pulse (RSS aggregation + trending)
+**Frontend:** `apps/web/versions/v0.13.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Spec items #10 and #11, per the spec's own recommended approach ("start
+with RSS ingestion only, add eCourts + OpenNyAI structuring in a second
+pass") — items #8 (eCourts scraper) and #9 (OpenNyAI structuring) are
+explicitly deferred: the former needs careful rate-limit handling against
+a real government portal, the latter needs a Python ML runtime that
+doesn't fit Vercel's Node serverless functions.
+
+- New `/api/ingest-pulse` serverless function: fetches RSS feeds from
+  LiveLaw, Bar & Bench, and SCC Online Blog (`rss-parser`, open source),
+  upserts new items into `pulse_items`. Each feed fetched independently
+  so one failing doesn't block the others — **Bar & Bench's exact feed
+  URL wasn't fully verifiable at build time** (custom CMS, not standard
+  WordPress) and may need adjusting once you see real ingestion results.
+- Scheduled via a new GitHub Actions workflow (`.github/workflows/pulse-ingest.yml`,
+  every 30 minutes) rather than Vercel Cron, to avoid Hobby-plan limits.
+  Protected by a shared secret (`INGEST_SECRET`) you'll need to set in
+  both Vercel env vars and a GitHub Actions repo secret.
+- New **Legal Pulse** view: Trending / Latest tabs. Trending is computed
+  **client-side** (keyword-overlap frequency across the last 7 days,
+  items sharing terms with multiple recent articles get flagged
+  "Spiking") rather than a stored `trend_score` + separate scoring
+  worker — simpler given the data volumes involved, same end result.
+- `pulse_items` is public read/write by design (news aggregation, not
+  user data) — documented tradeoff in the migration, since no
+  service_role key is used anywhere in this project.
+
 ## v0.12.0 — Multilingual support (Hindi, Marathi, Tamil, English)
 **Frontend:** `apps/web/versions/v0.12.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 

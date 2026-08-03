@@ -1,0 +1,18 @@
+name: Legal Pulse - RSS ingestion
+
+on:
+  schedule:
+    # Every 30 minutes
+    - cron: "*/30 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  ingest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call ingest-pulse endpoint
+        run: |
+          curl -sf -X POST \
+            -H "x-ingest-secret: ${{ secrets.INGEST_SECRET }}" \
+            "https://nyaya-agent-git-main-kushagra486s-projects.vercel.app/api/ingest-pulse" \
+            || echo "Ingestion call failed - check Vercel logs for /api/ingest-pulse"
