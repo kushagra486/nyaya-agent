@@ -29,6 +29,35 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.4.0 — Lawyer Chat + expanded roster (AI-simulated, demo mode)
+**Frontend:** `apps/web/versions/v1.4.0-nyay-bharat-dark.html` (= live `apps/web/index.html`)
+
+- **Lawyer Chat** — the "Message" button on lawyer cards (previously
+  decorative) now opens a real direct-chat thread with that lawyer,
+  separate from the case-agent Chat (Research/Drafting/Compliance).
+  Persisted per (lawyer, user) pair via a new `lawyer_messages` table.
+- **Automatic greeting** — the first time you open a chat with any
+  lawyer, they "greet" you first with a templated message referencing
+  their name, specialization, and city — no AI call needed for this part,
+  so it's instant and always available even if Groq is down.
+- **AI-simulated replies under the lawyer's real profile name** — since
+  there's no onboarded real lawyer, replies are generated via a new
+  `/api/lawyer-chat` endpoint that role-plays as that specific lawyer
+  (name, specializations, experience, city fed into the prompt), using
+  the active case's context when one is open. Hard constraints in the
+  prompt: never claims to have filed anything or taken formal action,
+  always redirects anything requiring a signature/filing to "a proper
+  consultation." **A persistent disclosure banner in the chat modal
+  states this is AI-simulated, demo-mode, not a real lawyer** — this
+  isn't hidden from the user.
+- **Expanded lawyer roster** from 4 to 20, covering specializations the
+  original set didn't touch at all: Matrimonial, Tax, Intellectual
+  Property, Real Estate, Consumer, Labour/Employment, Immigration, Motor
+  Accident Claims/Insurance, Medical Negligence, Banking, Constitutional,
+  Environmental, Startup/Corporate — spread across 13 cities/High Courts
+  rather than the original 4.
+- New `migration_009_lawyer_chat.sql`.
+
 ## v1.3.0 — Dark theme is now the default
 **Frontend:** `apps/web/versions/v1.3.0-nyay-bharat-dark.html` (= live `apps/web/index.html`)
 
