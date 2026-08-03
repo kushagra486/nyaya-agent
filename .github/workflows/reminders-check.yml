@@ -1,0 +1,18 @@
+name: Hearing Reminders - email check
+
+on:
+  schedule:
+    # Every 15 minutes, per the spec's suggested cadence
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+jobs:
+  send-reminders:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call send-reminders endpoint
+        run: |
+          curl -sf -X POST \
+            -H "x-ingest-secret: ${{ secrets.INGEST_SECRET }}" \
+            "https://nyaya-agent-git-main-kushagra486s-projects.vercel.app/api/send-reminders" \
+            || echo "Reminder check failed - check Vercel logs for /api/send-reminders"

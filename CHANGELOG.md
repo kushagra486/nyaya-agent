@@ -29,6 +29,40 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.0.0 — Hearing Reminders (email) — all 11 backend spec items complete
+**Frontend:** `apps/web/versions/v1.0.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Spec item #7, email-only per your call (no SMS — no free SMS option
+exists industry-wide; push notifications also skipped in this pass in
+favor of shipping email cleanly first):
+
+- New "Hearing Reminder" panel in the Analysis view: pick a date/time,
+  saves `cases.next_hearing_date` and schedules an email reminder for
+  1 day before. Dashboard and Case History cards now show the real
+  hearing date instead of the "No hearing scheduled" placeholder that's
+  been there since the earliest UI mockup.
+- New `/api/send-reminders` serverless function, using **Resend** (free
+  tier, no card required) for email delivery.
+- Scheduled via a new GitHub Actions workflow
+  (`.github/workflows/reminders-check.yml`, every 15 minutes per the
+  spec's suggested cadence), same shared-secret pattern as Legal Pulse.
+- Two new security-definer RPCs (`get_due_reminders`, `mark_reminder_sent`)
+  let the unauthenticated cron job do a narrow, controlled read/write
+  without needing a `service_role` key anywhere in this project — same
+  pattern as the client status page's `get_case_status_by_token`.
+- `profiles` now stores `email` (denormalized from `auth.users`) since
+  the cron job has no logged-in session to read it from otherwise.
+
+**This closes out the full 11-item backend spec:**
+1. Case Timeline (v0.8.0) · 2. Multi-Agent Chat (v0.10.0) · 3. Citation
+Generator (v0.10.0) · 4. Document Vault + clause review (v0.11.0) ·
+5. Multilingual (v0.12.0) · 6. Client Status Page (v0.10.0) ·
+7. Hearing Reminders (this release) · 8–11. Legal Pulse — RSS +
+trending built (v0.13.0); eCourts scraper and OpenNyAI structuring
+remain deferred as explicit follow-up work per the spec's own
+recommended build order (separate scraper infra + a Python ML runtime
+this Vercel/Node stack doesn't run).
+
 ## v0.13.0 — Legal Pulse (RSS aggregation + trending)
 **Frontend:** `apps/web/versions/v0.13.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 
