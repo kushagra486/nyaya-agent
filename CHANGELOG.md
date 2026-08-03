@@ -29,6 +29,51 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.1.0 — OpenNyAI judgment structuring (via Indian Kanoon, not eCourts)
+**Frontend:** `apps/web/versions/v1.1.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Spec item #9, using the path discussed instead of eCourts (#8 remains
+deferred - see below):
+
+- New Python script `scripts/process_judgments.py`, run via a new
+  GitHub Actions workflow (`opennyai-process.yml`, daily, pinned to
+  **Python 3.10** specifically - `opennyai`'s spaCy/thinc/Cython
+  toolchain doesn't build on newer Python; confirmed by a failed install
+  attempt on 3.12 during development) rather than a Vercel function,
+  since this needs a real Python ML runtime.
+- Fetches judgment text from **Indian Kanoon** (a public case-law
+  repository) instead of eCourts — sidesteps eCourts' CAPTCHA/rate-limit/
+  browser-automation problems entirely, since OpenNyAI's own sample code
+  already uses Indian Kanoon as a text source. `scripts/judgment_sources.txt`
+  is a plain URL list you expand over time; seeded with OpenNyAI's own
+  two official test judgments so there's a known-working starting point.
+- Runs all 3 OpenNyAI models (NER, Rhetorical Role classification,
+  Extractive Summarizer) and pushes structured output to a new
+  `judgments` table (`migration_007_judgments.sql`).
+- New **Structured Judgments** tab in the Legal Pulse view.
+
+**Important, unlike everything else shipped in this project: this
+specific piece could not be run end-to-end before shipping.** The
+`opennyai` package needs Python 3.8-3.10 with an older ML toolchain that
+isn't available in the environment this was built in (only Python 3.12
+was available there; installing opennyai failed with a Cython build
+error confirming the version mismatch). The parts that *could* be
+verified were: the source-list loader, the sample-judgment text fetch
+(confirmed working - pulled real text from OpenNyAI's GitHub-hosted
+samples), and the court/title heuristic (confirmed correctly identified
+"Supreme Court of India" from real judgment text). The exact shape of
+`Pipeline()`'s return value is a best-effort reconstruction from
+OpenNyAI's documentation and is clearly flagged in the script's
+docstring as the thing most likely to need a small adjustment on the
+first real GitHub Actions run - check the Action's log output if it
+errors, the fix is almost certainly a one-line change to how the result
+object's fields are accessed.
+
+**Still deferred:** eCourts scraper ingestion (spec item #8) — CAPTCHA
+handling and government-portal rate-limit discipline remain a real,
+ongoing commitment regardless of where the scraper runs, separate from
+today's work.
+
 ## v1.0.0 — Hearing Reminders (email) — all 11 backend spec items complete
 **Frontend:** `apps/web/versions/v1.0.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 

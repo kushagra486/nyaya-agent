@@ -1,0 +1,8 @@
+# Nyaya-Agent :: Legal Pulse judgment structuring dependencies
+# Requires Python 3.8-3.10 specifically - opennyai's spaCy/thinc/Cython
+# toolchain does not build on newer Python versions (confirmed: fails on
+# 3.12 with a Cython compile error against thinc/backends/numpy_ops.pyx).
+
+opennyai
+requests>=2.31.0
+beautifulsoup4>=4.12.0

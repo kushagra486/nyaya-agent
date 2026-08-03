@@ -1,0 +1,21 @@
+# Nyaya-Agent :: Legal Pulse judgment sources
+#
+# One URL per line. Lines starting with # are ignored.
+#
+# The two sample_judgment URLs below are OpenNyAI's own official test
+# fixtures (from their GitHub repo) - they're plain .txt files, guaranteed
+# reachable, and exist specifically so this pipeline has something known-
+# good to process on the very first run, before you've added real
+# Indian Kanoon judgment URLs below them.
+#
+# To add real judgments: browse https://indiankanoon.org, find a judgment,
+# copy its /doc/XXXXXX/ URL, and add it below. The scraper in
+# process_judgments.py extracts text from Indian Kanoon's HTML structure
+# on a best-effort basis - if a judgment doesn't extract cleanly, check
+# the actual page HTML and adjust the BeautifulSoup selector in that file.
+
+https://raw.githubusercontent.com/OpenNyAI/Opennyai/master/samples/sample_judgment1.txt
+https://raw.githubusercontent.com/OpenNyAI/Opennyai/master/samples/sample_judgment2.txt
+
+# Add real Indian Kanoon judgment URLs below, one per line:
+# https://indiankanoon.org/doc/1234567/
