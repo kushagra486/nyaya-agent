@@ -29,6 +29,23 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.5.0 — Basic login page (reverses v0.9.2/v0.9.3's no-login approach)
+**Frontend:** `apps/web/versions/v1.5.0-nyay-bharat-dark.html` (= live `apps/web/index.html`)
+
+Explicit reversal of the "remove the login page" decision from v0.9.2/
+v0.9.3 — a real, deliberately simple login page is back:
+
+- Email + password only — no magic link, no anonymous auto-connect, no
+  mode complexity. A single form with a Sign In / Sign Up toggle link.
+- The app is properly gated again: nothing renders behind it until a
+  real session exists. No more silent background anonymous sign-in.
+- Sign up still requires email confirmation by default (a Supabase
+  project setting, not something this app controls) — same as the
+  original auth flow from early in the project.
+- Removed the non-blocking connection banner and all anonymous-session
+  logic entirely, rather than leaving it as dead code alongside the new
+  login page.
+
 ## v1.4.0 — Lawyer Chat + expanded roster (AI-simulated, demo mode)
 **Frontend:** `apps/web/versions/v1.4.0-nyay-bharat-dark.html` (= live `apps/web/index.html`)
 
