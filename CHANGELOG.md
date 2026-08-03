@@ -29,6 +29,22 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.3.0 — Dark theme is now the default
+**Frontend:** `apps/web/versions/v1.3.0-nyay-bharat-dark.html` (= live `apps/web/index.html`)
+
+- The dark theme + toggle turned out to already be fully built (CSS
+  variables, toggle button, JS wiring) but the app defaulted to following
+  the OS's `prefers-color-scheme` setting rather than a fixed choice.
+  Changed the default to **always start in dark mode** (still respects a
+  saved preference in localStorage if you've toggled it before) — the
+  toggle in the top nav (moon/sun icon) switches between dark and light
+  at any time.
+- Found and fixed one real bug while auditing for dark-mode contrast:
+  error-message text used a hardcoded color rather than a theme variable.
+  Added a proper `--error` CSS variable (dark red for light theme, a
+  brighter red for dark theme so it stays readable against a near-black
+  background) and replaced all 6 hardcoded usages.
+
 ## v1.2.0 — eCourts Cause Lists — all 11 backend spec items now attempted
 **Frontend:** `apps/web/versions/v1.2.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 
