@@ -29,6 +29,16 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v1.5.1 — Full name at sign-up
+**Frontend:** `apps/web/versions/v1.5.1-nyay-bharat-dark.html` (= live `apps/web/index.html`)
+
+- Added a required "Full name" field to the login page, shown only in
+  Sign Up mode. No database change needed — `profiles.full_name` and the
+  trigger that populates it from sign-up metadata have existed since the
+  original `schema.sql`, just never had a frontend field feeding them.
+- The captured name isn't just stored and hidden: the account menu and
+  Profile page now show it (alongside the email) once signed in.
+
 ## v1.5.0 — Basic login page (reverses v0.9.2/v0.9.3's no-login approach)
 **Frontend:** `apps/web/versions/v1.5.0-nyay-bharat-dark.html` (= live `apps/web/index.html`)
 
