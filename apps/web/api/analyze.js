@@ -52,7 +52,7 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: "Too many requests — please wait a minute and try again." });
   }
 
-  const { caseText, candidates } = req.body || {};
+  const { caseText, candidates, locale } = req.body || {};
   if (typeof caseText !== "string" || !caseText.trim()) {
     return res.status(400).json({ error: "caseText is required." });
   }
@@ -66,6 +66,12 @@ export default async function handler(req, res) {
         `- ${c.title} — old: Sec ${c.oldSection} ${c.oldAct}; current: Sec ${c.newSection} ${c.newAct}. ${c.notes ?? ""}`
     )
     .join("\n");
+
+  const LOCALE_NAMES = { hi: "Hindi", mr: "Marathi", ta: "Tamil", en: "English" };
+  const languageName = LOCALE_NAMES[locale] || "English";
+  const languageLine = languageName === "English"
+    ? ""
+    : `\nRespond with all "facts", "description", "explanation", "steps", and "disclaimer" text values in ${languageName}, natively written (not transliterated English) - but keep "citation"/"oldCitation"/"event_date"/"confidence" values as-is (statute numbers and codes stay in their original form regardless of language).`;
 
   const systemPrompt = `You are a legal-information assistant for Indian law, not a lawyer.
 Ground every statute you mention ONLY in the candidate list below — never invent a section number.
@@ -82,7 +88,7 @@ Respond with STRICT JSON only, no markdown fences, matching this exact shape:
   "disclaimer": "This is legal information, not legal advice — consult a licensed advocate for your specific case."
 }
 For "timeline": extract every date-anchored event mentioned in the case description, in chronological order. If the description mentions an event but no explicit date, still include it with event_date null rather than guessing a date. If truly nothing date-like is mentioned, return an empty array.
-If nothing in the candidate list fits, return an empty statutes array and say so in a step instead of guessing.
+If nothing in the candidate list fits, return an empty statutes array and say so in a step instead of guessing.${languageLine}
 
 Candidate sections (only cite from this list):
 ${groundingBlock || "(no strong candidates found in the local dataset)"}`;

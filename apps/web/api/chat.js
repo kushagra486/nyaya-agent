@@ -41,7 +41,7 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: "Too many requests — please wait a minute and try again." });
   }
 
-  const { caseContext, history, agentType } = req.body || {};
+  const { caseContext, history, agentType, locale } = req.body || {};
   if (!Array.isArray(history) || history.length === 0) {
     return res.status(400).json({ error: "history (array of {role, content}) is required." });
   }
@@ -73,7 +73,13 @@ Never invent a statute section number. Keep responses short and focused specific
 End every response with a short reminder that this is legal information, not legal advice.`,
   };
 
-  const systemPrompt = AGENT_PROMPTS[agent];
+  const LOCALE_NAMES = { hi: "Hindi", mr: "Marathi", ta: "Tamil", en: "English" };
+  const languageName = LOCALE_NAMES[locale] || "English";
+  const languageLine = languageName === "English"
+    ? ""
+    : `\n\nRespond natively in ${languageName} (not transliterated English) - but keep any statute section numbers/codes in their original form.`;
+
+  const systemPrompt = AGENT_PROMPTS[agent] + languageLine;
 
   try {
     const groqRes = await fetch(GROQ_ENDPOINT, {

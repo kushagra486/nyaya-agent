@@ -42,12 +42,18 @@ export default async function handler(req, res) {
     return res.status(429).json({ error: "Too many requests — please wait a minute and try again." });
   }
 
-  const { documentText } = req.body || {};
+  const { documentText, locale } = req.body || {};
   if (typeof documentText !== "string" || !documentText.trim()) {
     return res.status(400).json({ error: "documentText is required." });
   }
 
   const safeText = documentText.slice(0, MAX_TEXT_CHARS);
+
+  const LOCALE_NAMES = { hi: "Hindi", mr: "Marathi", ta: "Tamil", en: "English" };
+  const languageName = LOCALE_NAMES[locale] || "English";
+  const languageLine = languageName === "English"
+    ? ""
+    : `\nRespond with "explanation", "summary", and "disclaimer" text in ${languageName}, natively written (not transliterated English) - "clause_text" should stay as a quote/paraphrase of the original document text, and "risk_level" stays low|medium|high.`;
 
   const systemPrompt = `You are a document-review assistant for Indian legal documents (contracts, agreements, notices). Not a lawyer - this is informational review, not legal advice.
 Break the document into its distinct clauses/sections and evaluate each one against a fixed rubric: what obligation it creates, whether it's an unusual or one-sided term, and a risk level.
@@ -62,7 +68,7 @@ Respond with STRICT JSON only, no markdown fences, matching this exact shape:
 Flag as "high" risk: unlimited liability, unilateral termination rights favoring one party, automatic renewal without notice, broad indemnification, non-standard penalty clauses.
 Flag as "medium": ambiguous terms, missing standard protections, one-sided but common terms.
 Flag as "low": standard, mutual, unremarkable terms.
-If the document has no clearly divisible clauses (e.g. it's a short letter), treat each paragraph as one clause.`;
+If the document has no clearly divisible clauses (e.g. it's a short letter), treat each paragraph as one clause.${languageLine}`;
 
   try {
     const groqRes = await fetch(GROQ_ENDPOINT, {

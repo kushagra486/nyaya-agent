@@ -29,6 +29,28 @@ the script's own code and its DOM references, but say nothing about
 whether external dependencies are actually included. Added an explicit
 external-dependency check to the validation routine going forward.
 
+## v0.12.0 — Multilingual support (Hindi, Marathi, Tamil, English)
+**Frontend:** `apps/web/versions/v0.12.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
+
+Spec item #5, fully free — no translation API, no new accounts:
+
+- Language selector in the top nav (EN / हिं / मरा / தமி), persisted in
+  localStorage. Switches 36 core UI strings — nav items, hero, section
+  headers, primary buttons — across all 4 languages instantly, no page
+  reload.
+- **AI-generated content is translated natively, not post-translated**:
+  Analysis, Chat (all three agents), and Document clause review now
+  accept a `locale` param and instruct the model to respond directly in
+  the selected language — statute citations and section numbers always
+  stay in their original form regardless of language, per the spec's own
+  recommendation to pass locale into the prompt rather than translating
+  output afterward.
+- This is a curated first pass covering primary navigation and headers,
+  not every microcopy string in the app (toasts, placeholders, and
+  dynamic case/document content stay in whatever language the user
+  entered them in) — translating every string is straightforward
+  incremental work from here if wanted.
+
 ## v0.11.0 — Document Vault with clause-level AI review
 **Frontend:** `apps/web/versions/v0.11.0-nyay-bharat-light.html` (= live `apps/web/index.html`)
 
