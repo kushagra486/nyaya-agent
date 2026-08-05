@@ -1,0 +1,222 @@
+digraph NyayBharatArchitecture {
+  rankdir=TB;
+  splines=polyline;
+  nodesep=0.5;
+  ranksep=0.9;
+  compound=true;
+  clusterrank=local;
+  newrank=true;
+  fontname="Helvetica";
+  bgcolor="#fbf8f2";
+  label="Nyay Bharat — System Architecture & Data Flow";
+  labelloc="t";
+  fontsize=30;
+  fontcolor="#2a231b";
+  pad=0.5;
+  concentrate=false;
+
+  node [fontname="Helvetica", fontsize=11, style="filled,rounded", shape=box, penwidth=1.3, margin="0.15,0.1"];
+  edge [fontname="Helvetica", fontsize=9, color="#8a7d6c", fontcolor="#4a4038", penwidth=1.1, arrowsize=0.7];
+
+  // regardless of how the real edges would otherwise pull clusters together.
+
+  // ============================================================
+  // USER LAYER
+  // ============================================================
+  user [label="User\n(Client / Lawyer — web browser)", fillcolor="#1f3a5a", fontcolor="white", shape=oval, width=2.6, fontsize=13];
+
+  // ============================================================
+  // HOSTING & CI/CD
+  // ============================================================
+  subgraph cluster_hosting {
+    label="Hosting & CI/CD  —  GitHub repo: kushagra486/nyaya-agent";
+    style="filled,rounded"; fillcolor="#e8edf3"; color="#1f3a5a"; fontsize=13; fontcolor="#1f3a5a";
+
+    repo [label="GitHub Repository\nindex.html + /api + /packages/database + /scripts", fillcolor="#ffffff", color="#1f3a5a"];
+    { rank=same;
+      ghactions_deploy [label="GitHub Actions\n(Deploy workflow)", fillcolor="#ffffff", color="#1f3a5a"];
+      vercel [label="Vercel\n(git-linked auto-deploy)", fillcolor="#ffffff", color="#1f3a5a"];
+    }
+    ghpages [label="GitHub Pages\nkushagra486.github.io/nyaya-agent  (static mirror)", fillcolor="#ffffff", color="#1f3a5a"];
+
+    repo -> ghactions_deploy [label="push to main"];
+    repo -> vercel [label="push to main"];
+    ghactions_deploy -> ghpages [label="builds & deploys"];
+  }
+
+  // ============================================================
+  // FRONTEND APPLICATION — 3-row grid
+  // ============================================================
+  subgraph cluster_frontend {
+    label="Frontend — single static index.html (Vite passthrough, no framework)";
+    style="filled,rounded"; fillcolor="#f7ece9"; color="#7c1f2e"; fontsize=13; fontcolor="#7c1f2e";
+
+    { rank=same;
+      auth [label="Login / Sign-up", fillcolor="#ffffff", color="#7c1f2e"];
+      dashboard [label="Dashboard", fillcolor="#ffffff", color="#7c1f2e"];
+      analysis [label="AI Legal Analysis", fillcolor="#ffffff", color="#7c1f2e"];
+      chat [label="Multi-Agent Chat", fillcolor="#ffffff", color="#7c1f2e"];
+    }
+    { rank=same;
+      lawyers [label="Lawyer Directory", fillcolor="#ffffff", color="#7c1f2e"];
+      lawyerchat [label="Lawyer Chat (AI persona)", fillcolor="#ffffff", color="#7c1f2e"];
+      documents [label="Document Vault", fillcolor="#ffffff", color="#7c1f2e"];
+      pulse [label="Legal Pulse", fillcolor="#ffffff", color="#7c1f2e"];
+    }
+    { rank=same;
+      citations [label="Citation Generator", fillcolor="#ffffff", color="#7c1f2e"];
+      reminders_ui [label="Hearing Reminders", fillcolor="#ffffff", color="#7c1f2e"];
+      misc [label="History / Library / Profile\n/ Public Status Page", fillcolor="#ffffff", color="#7c1f2e"];
+    }
+
+    auth -> lawyers [style=invis];
+    dashboard -> lawyerchat [style=invis];
+    analysis -> documents [style=invis];
+    chat -> pulse [style=invis];
+    lawyers -> citations [style=invis];
+    lawyerchat -> reminders_ui [style=invis];
+    documents -> misc [style=invis];
+  }
+
+  // ============================================================
+  // BACKEND API — Vercel serverless functions, 2-row grid
+  // ============================================================
+  subgraph cluster_api {
+    label="Backend API — Vercel Serverless Functions (Node.js)";
+    style="filled,rounded"; fillcolor="#faf3e2"; color="#ad8225"; fontsize=13; fontcolor="#8a6119";
+
+    { rank=same;
+      api_analyze [label="/api/analyze", fillcolor="#ffffff", color="#ad8225"];
+      api_chat [label="/api/chat", fillcolor="#ffffff", color="#ad8225"];
+      api_lawyerchat [label="/api/lawyer-chat", fillcolor="#ffffff", color="#ad8225"];
+    }
+    { rank=same;
+      api_review [label="/api/review-document", fillcolor="#ffffff", color="#ad8225"];
+      api_ingest [label="/api/ingest-pulse", fillcolor="#ffffff", color="#ad8225"];
+      api_reminders [label="/api/send-reminders", fillcolor="#ffffff", color="#ad8225"];
+    }
+    api_analyze -> api_review [style=invis];
+    api_chat -> api_ingest [style=invis];
+    api_lawyerchat -> api_reminders [style=invis];
+  }
+
+  // ============================================================
+  // AI & EMAIL SERVICES
+  // ============================================================
+  subgraph cluster_external_services {
+    label="AI & Email Services";
+    style="filled,rounded"; fillcolor="#eef2ea"; color="#3f7d5b"; fontsize=13; fontcolor="#3f7d5b";
+    { rank=same;
+      groq [label="Groq API — Llama 3.3 70B\n(GROQ_API_KEY, server-side only)", fillcolor="#ffffff", color="#3f7d5b"];
+      resend [label="Resend\n(email delivery, free tier)", fillcolor="#ffffff", color="#3f7d5b"];
+    }
+  }
+
+  // ============================================================
+  // DATA LAYER — Supabase
+  // ============================================================
+  subgraph cluster_supabase {
+    label="Data Layer — Supabase (Postgres + Auth + Storage)";
+    style="filled,rounded"; fillcolor="#e9f2ec"; color="#3f7d5b"; fontsize=13; fontcolor="#3f7d5b";
+
+    sb_auth [label="Auth (email/password sessions)", fillcolor="#ffffff", color="#3f7d5b"];
+    sb_tables [label="Postgres — 17 tables, RLS on every table\nprofiles · cases · messages · lawyers · lawyer_messages · consultations\ntimeline_events · documents · document_clauses · client_status_links\nreminders · pulse_items · judgments · cause_lists", fillcolor="#ffffff", color="#3f7d5b"];
+    { rank=same;
+      sb_storage [label="Storage: \"documents\" bucket\n(private, per-user RLS)", fillcolor="#ffffff", color="#3f7d5b"];
+      sb_rpc [label="Security-definer RPCs\nget_case_status_by_token · get_due_reminders\nmark_reminder_sent", fillcolor="#ffffff", color="#3f7d5b"];
+    }
+    sb_auth -> sb_tables [style=invis];
+    sb_tables -> sb_storage [style=invis];
+    sb_tables -> sb_rpc [style=invis];
+  }
+
+  // ============================================================
+  // SCHEDULED JOBS — GitHub Actions cron, 2-row grid
+  // ============================================================
+  subgraph cluster_cron {
+    label="Scheduled Jobs — GitHub Actions (cron)";
+    style="filled,rounded"; fillcolor="#f4ece0"; color="#b5651d"; fontsize=13; fontcolor="#b5651d";
+
+    { rank=same;
+      cron_pulse [label="pulse-ingest.yml\nevery 30 min", fillcolor="#ffffff", color="#b5651d"];
+      cron_reminders [label="reminders-check.yml\nevery 15 min", fillcolor="#ffffff", color="#b5651d"];
+    }
+    { rank=same;
+      cron_opennyai [label="opennyai-process.yml\ndaily · Python 3.10", fillcolor="#ffffff", color="#b5651d"];
+      cron_ecourts [label="ecourts-causelists.yml\ndaily · Python 3.12 + tesseract-ocr", fillcolor="#ffffff", color="#b5651d"];
+    }
+    cron_pulse -> cron_opennyai [style=invis];
+    cron_reminders -> cron_ecourts [style=invis];
+  }
+
+  // ============================================================
+  // EXTERNAL DATA SOURCES
+  // ============================================================
+  subgraph cluster_sources {
+    label="External Data Sources";
+    style="filled,rounded"; fillcolor="#ececec"; color="#555555"; fontsize=13; fontcolor="#333333";
+    { rank=same;
+      src_rss [label="RSS Feeds\nLiveLaw · Bar & Bench · SCC Online Blog", fillcolor="#ffffff", color="#555555"];
+      src_kanoon [label="Indian Kanoon\n(public case-law text)", fillcolor="#ffffff", color="#555555"];
+      src_ecourts [label="eCourts Govt Portal\nhcservices.ecourts.gov.in\n(CAPTCHA solved: OpenCV+Tesseract)", fillcolor="#ffffff", color="#555555"];
+    }
+  }
+
+  // Cross-cluster alignment: AI services sit at the same tier as the
+  // backend API's second row (both are "called by the API layer").
+  { rank=same; api_review; groq; }
+
+  // ============================================================
+  // EDGES: user <-> hosting <-> frontend
+  // ============================================================
+  user -> ghpages [label="visits (static-only)", color="#1f3a5a"];
+  user -> vercel [label="visits (full app)", color="#1f3a5a"];
+  ghpages -> auth [lhead=cluster_frontend, color="#1f3a5a"];
+  vercel -> auth [lhead=cluster_frontend, color="#1f3a5a"];
+
+  // ============================================================
+  // EDGES: frontend -> Supabase (direct, most CRUD + auth)
+  // ============================================================
+  auth -> sb_auth [label="sign in/up", color="#3f7d5b"];
+  dashboard -> sb_tables [label="cases, stats", color="#3f7d5b"];
+  lawyers -> sb_tables [label="lawyers, consultations", color="#3f7d5b"];
+  lawyerchat -> sb_tables [label="lawyer_messages", color="#3f7d5b"];
+  documents -> sb_storage [label="file upload", color="#3f7d5b"];
+  documents -> sb_tables [label="documents, clauses", color="#3f7d5b"];
+  pulse -> sb_tables [label="read feeds", color="#3f7d5b"];
+  reminders_ui -> sb_tables [label="reminders", color="#3f7d5b"];
+  misc -> sb_tables [label="timeline, history", color="#3f7d5b"];
+  misc -> sb_rpc [label="public status", color="#3f7d5b"];
+
+  // ============================================================
+  // EDGES: frontend -> backend API (AI calls only)
+  // ============================================================
+  analysis -> api_analyze [label="case text", color="#ad8225"];
+  chat -> api_chat [label="history+agent", color="#ad8225"];
+  lawyerchat -> api_lawyerchat [label="history", color="#ad8225"];
+  documents -> api_review [label="extracted text\n(pdf.js/mammoth.js)", color="#ad8225"];
+
+  // ============================================================
+  // EDGES: backend API -> AI/email services & Supabase
+  // ============================================================
+  api_analyze -> groq;
+  api_chat -> groq;
+  api_lawyerchat -> groq;
+  api_review -> groq;
+  api_reminders -> sb_rpc [label="fetch/mark due"];
+  api_reminders -> resend [label="send email"];
+  api_ingest -> sb_tables [label="upsert pulse_items"];
+
+  // ============================================================
+  // EDGES: scheduled cron -> API / scripts -> external sources -> Supabase
+  // ============================================================
+  cron_pulse -> api_ingest [label="HTTPS+secret", color="#b5651d"];
+  cron_reminders -> api_reminders [label="HTTPS+secret", color="#b5651d"];
+  api_ingest -> src_rss [label="fetch feeds", color="#555555"];
+
+  cron_opennyai -> src_kanoon [label="fetch text", color="#555555"];
+  cron_opennyai -> sb_tables [label="write judgments", color="#3f7d5b"];
+
+  cron_ecourts -> src_ecourts [label="fetch cause lists", color="#555555"];
+  cron_ecourts -> sb_tables [label="write cause_lists", color="#3f7d5b"];
+}
