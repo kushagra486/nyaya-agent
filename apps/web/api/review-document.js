@@ -4,7 +4,7 @@
 // before calling this), and returns clause-level risk analysis.
 
 const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama-3.3-70b-versatile";
+const MODEL = "openai/gpt-oss-120b";
 const MAX_TEXT_CHARS = 12000;
 
 const hits = new Map();
@@ -80,7 +80,8 @@ If the document has no clearly divisible clauses (e.g. it's a short letter), tre
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.2,
-        max_tokens: 1500,
+        max_tokens: 2000,
+        reasoning_effort: "low",
         response_format: { type: "json_object" },
         messages: [
           { role: "system", content: systemPrompt },
