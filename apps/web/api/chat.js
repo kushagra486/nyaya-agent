@@ -2,7 +2,7 @@
 // but accepts a running message history instead of a single case description.
 
 const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama-3.3-70b-versatile";
+const MODEL = "openai/gpt-oss-120b";
 const MAX_MESSAGE_CHARS = 1500;
 const MAX_HISTORY = 12;
 
@@ -91,7 +91,8 @@ End every response with a short reminder that this is legal information, not leg
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.3,
-        max_tokens: 700,
+        max_tokens: 1000,
+        reasoning_effort: "low",
         messages: [{ role: "system", content: systemPrompt }, ...safeHistory],
       }),
     });
