@@ -7,7 +7,7 @@
 // not change that requirement, it just generates the reply text.
 
 const GROQ_ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-const MODEL = "llama-3.3-70b-versatile";
+const MODEL = "openai/gpt-oss-120b";
 const MAX_MESSAGE_CHARS = 1500;
 const MAX_HISTORY = 12;
 
@@ -82,7 +82,8 @@ Hard rules:
       body: JSON.stringify({
         model: MODEL,
         temperature: 0.4,
-        max_tokens: 600,
+        max_tokens: 900,
+        reasoning_effort: "low",
         messages: [{ role: "system", content: systemPrompt }, ...safeHistory],
       }),
     });
